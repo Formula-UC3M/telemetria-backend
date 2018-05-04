@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+#VS Code
+.history
+
+#Operative Systems
+.DS_Store

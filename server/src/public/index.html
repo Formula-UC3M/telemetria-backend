@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formula UC3M</title>
+	<script src="https://unpkg.com/mqtt@2.17.0/dist/mqtt.min.js"></script>
+	<script>
+		var mqtt_server = 'localhost'
+		var mqtt_port = 3001;
+		var mqttService = mqtt.connect("ws://" + mqtt_server, {
+			//username: mqtt_username,
+			//password: mqtt_password,
+			//clientId: "interface",
+			port: mqtt_port
+		});
+		
+		mqttService.on("message", (topic, payload) => {
+			alert([topic, payload].join(": "));
+		});
+		
+		mqttService.subscribe("formula/realtime-data");
+		mqttService.publish("formula/realtime-data", JSON.stringify({
+			velocidad: 1,
+			frenos: 200
+		}));
+	</script>
+	<style type="text/css">
+
+		div {
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+		}
+		
+		.top-section,
+		.car {
+			display: block;
+		}
+
+		.top-section {
+			margin-top: 5vh;
+			height: 20vh;
+		}
+		.top-section > div {
+			margin: 0 3vh;
+		}
+
+		.car {
+			position: relative;
+		}
+
+			.car img {
+				left: 50%;
+				opacity: .16;
+				position: absolute;
+				top: 0;
+				transform: translate(-50%);
+				width: 80%;
+				z-index: 1;
+				display: none;
+			}
+
+		.kmh {
+			display: inline-block;
+			height: 10vh;
+			line-height: 10vh;
+			font-size: 2em;
+		}
+			.kmh span {
+				font-size: 4em;
+			}
+
+		.marcha {
+			background-color: lightgrey;
+			border: 1px solid grey;
+			color: black;
+			font-size: 4em;
+			line-height: 10vw;	
+			height: 10vw;
+			width: 10vw;
+		}
+
+		.pedal {
+			height: 15vh;
+			width: 4vw;
+			background-color: grey;
+		}
+			.pedal .empty {
+				background-color: lightgrey;
+				height: 100%;
+				vertical-align: top;
+				width: 100%;	
+			}
+
+		.rpm {
+			width: 30vw;
+		}
+
+			.rpm span {
+				width: 100%;
+				height: 4vh;
+				font-size: 2em; 
+			}
+
+			.rpm .porcentaje {
+				background-color: lightgrey;
+				height: 4vh;
+				margin: 1vh 0;
+				position: relative;
+				text-align: left;
+				width: 90%;
+			}
+				.rpm .porcentaje .fill {
+					background-color: green;
+					height: 100%;
+					width: 60%;
+				}
+
+				.rpm .porcentaje .cut {
+					position: absolute;
+					right: -5vh;
+					background-color: red;
+					height: 100%;
+					width: 4vh;
+				}
+
+			.rpm .embrague {
+				width: 90%;
+				height: 4vh;
+				background-color: yellow;
+				margin: 1vh 0;
+			}
+
+		/**/
+
+
+		.wheel {
+			position: relative;
+			border: 1px solid black;
+			height: 20vh;
+    		width: 20vw;
+    		margin: 5vh 0;
+		}
+
+			.wheel .half {
+				background-color: white;
+				border: 1px solid black;
+				font-size: 2em;
+				height: 50%;
+				line-height: 10vh;
+				width: 100%;
+			}
+			
+			.wheel .break {
+				border: 1px solid lightgrey; 
+				font-size: 2em;
+				margin-left: 5%;
+				width: 90%;
+			}
+				.wheel .break .break-half {
+					width: 48%;
+				}
+
+			.wheel .break-top {
+				position: absolute;
+				margin-top: -5vh;
+			}
+
+			.wheel .break-bottom {
+				position: absolute;
+				margin-top: 25vh;
+			}
+
+		.tercio {
+			width: 30vw;
+			display: inline-block;
+		}
+
+		.bloque-motor {
+			border: 2px solid black;
+			height: 50vh;
+		}
+
+		.bloque-delantero,
+		.bloque-trasero,
+		.bloque-motor {
+			z-index: 2;
+		}
+
+		.direction {
+			height: 10%;
+			font-size: 1.5em;
+			padding: 2vh 0;
+			width: 100%;
+		}
+			.direction .bar {
+				background-color: lightgrey; 
+				height: 1vh;
+				width: 60%;
+			}	
+				.direction .bar .side {
+					height: 100%;
+					width: calc(48% - 1vh);
+					margin-top: -2vh;
+				}	
+					.direction .bar .side.left {
+						text-align: right;
+					}
+					.direction .bar .side.right {
+						text-align: left;
+					}
+					.direction .bar .side .fill {
+						background-color: green;
+						height: 100%;
+						margin-top: -2vh;
+					}	
+				.direction .bar .middle {
+					background-color: red;
+					height: 100%;
+					width: 1vh;
+				}	
+
+		.engine {
+			height: 30%;
+			line-height: 15vh;
+			font-size: 3em;
+			width: 100%;
+		}
+
+			.engine .engine-half {
+				width: 40%;
+			}
+
+		.cooler {
+			margin-top: 8vh;
+			font-size: 2.5em;
+			width: 48%;
+		}
+
+			.cooler .cooler-temp {
+				width: 100%;
+			}
+
+	</style>
+</head>
+<body>
+
+	<div class="top-section">
+		<div class="kmh">
+			<span>237</span> km/h
+		</div>
+		<div class="marcha">4</div>
+		<div class="pedals">
+			<div class="pedal">
+				<div class="empty" style="height: 10%"></div>
+			</div>
+			<div class="pedal">
+				<div class="empty" style="height: 60%"></div>
+			</div>
+		</div>
+		<div class="rpm">
+			<span>12000 rpm</span>
+			<div class="porcentaje">
+				<div class="fill"></div>
+				<div class="cut"></div>
+			</div>
+			<div class="embrague"></div>
+		</div>
+	</div>
+
+	<div class="car">
+		
+		<div class="bloque-delatero tercio">
+			
+			<div class="wheel">
+				<div class="break break-top">
+					<div class="break-half">150</div>
+					<div class="break-half">120</div>
+				</div>
+				<div class="temp half">30</div>
+				<div class="pression half">1,2</div>
+			</div>
+
+			<div class="wheel">
+				<div class="break break-bottom">
+					<div class="break-half">150</div>
+					<div class="break-half">120</div>
+				</div>
+				<div class="temp half">30</div>
+				<div class="pression half">1,2</div>
+			</div>	
+		</div>
+
+		<div class="bloque-motor tercio">
+			<div class="direction">
+				direction<br />
+				<div class="bar">
+					<div class="side left">
+						<div class="fill" style="width: 57%;"></div>
+					</div><!--
+					--><div class="middle"></div><!--
+					--><div class="side right">
+						<div class="fill" style="width: 2%;"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="engine">
+				<div class="engine-half engine-oil-tem">190</div>
+				<div class="engine-half engine-water-tem">85</div>
+			</div>
+			
+			<div class="cooler">
+				<div class="cooler-temp cooler-temp-in">85</div>
+				<div class="cooler-temp cooler-temp-out">85</div>
+			</div>
+			<div class="cooler">
+				<div class="cooler-temp cooler-temp-in">85</div>
+				<div class="cooler-temp cooler-temp-out">85</div>
+			</div>
+		</div>
+
+		<div class="bloque-trasero tercio">
+			<div class="wheel">
+				<div class="break break-top">
+					<div class="break-half">150</div>
+					<div class="break-half">120</div>
+				</div>
+				<div class="temp half">30</div>
+				<div class="pression half">1,2</div>
+			</div>
+
+			<div class="wheel">
+				<div class="break break-bottom">
+					<div class="break-half">150</div>
+					<div class="break-half">120</div>
+				</div>
+				<div class="temp half">30</div>
+				<div class="pression half">1,2</div>
+			</div>
+		</div>
+
+		<img src="img/coche.png">
+
+	</div>
+
+</body>
+</html>
