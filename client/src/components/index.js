@@ -1,10 +1,4 @@
 /* eslint-disable */
-import {
-    IndicatorDirection,
-    IndicatorRpm
-} from './indicators/index';
+export { default as Header } from './Header';
+export { default as Car } from './Car';
 
-export {
-    IndicatorDirection,
-    IndicatorRpm,
-};

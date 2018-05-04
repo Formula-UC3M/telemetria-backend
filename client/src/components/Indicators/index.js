@@ -1,12 +1,5 @@
 /* eslint-disable */
-import { default as IndicatorDirection } from './Direction';
-import { default as IndicatorRpm } from './Rpm';
-import { default as IndicatorSpeedometer } from './Speedometer';
-import { default as IndicatorGear } from './Gear';
-
-export {
-  IndicatorDirection,
-  IndicatorRpm,
-  IndicatorSpeedometer,
-  IndicatorGear,
-};
+export { default as IndicatorDirection } from './Direction';
+export { default as IndicatorRpm } from './Rpm';
+export { default as IndicatorSpeedometer } from './Speedometer';
+export { default as IndicatorGear } from './Gear';

@@ -3,7 +3,7 @@
 	"parserOptions": {
 		"ecmaVersion": 6,
 		"ecmaFeatures": {
-			"arrowFunctions": false,
+			"arrowFunctions": true,
 			"classes": false,
 			"defaultParams": false,
 			"modules": false,
