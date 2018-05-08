@@ -19,7 +19,7 @@
     "formula",
     "open cource",
     "formula-uc3m",
-    "real-time-server"
+    "real-time-data"
   ],
   "author": {
     "name": "Javier Gallego",
@@ -38,7 +38,9 @@
   "homepage": "https://github.com/OSWeekends/formula-uc3m/tree/master/server#readme",
   "dependencies": {
     "dotenv": "^5.0.1",
+    "mongoose": "^5.0.14",
     "mosca": "^2.8.1",
+    "nconf": "^0.10.0",
     "pillars": "^0.6.4"
   },
   "devDependencies": {
@@ -47,12 +49,14 @@
     "gulp": "3.9.1",
     "gulp-debug": "3.0.0",
     "gulp-eslint": "3.0.1",
+    "gulp-inject-partials": "^1.0.4",
     "gulp-istanbul": "1.1.1",
     "gulp-jsdoc3": "1.0.1",
     "gulp-mocha": "3.0.1",
     "gulp-util": "3.0.8",
     "mocha": "3.1.2",
     "mocha-sinon": "1.1.6",
+    "path": "^0.12.7",
     "sinon": "1.17.7"
   }
 }

@@ -6,6 +6,7 @@ const debug = require('gulp-debug');
 const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
 const jsdoc = require('gulp-jsdoc3');
+const injectPartials = require('gulp-inject-partials');
 
 gulp.task('jsdoc', cb => {
 	const config = require('./docs/jsdoc.json');
@@ -54,4 +55,16 @@ gulp.task('lint', () => {
 		.pipe(eslint({fix:true}))
 		.pipe(eslint.format())
 		.pipe(gulp.dest('.'));
+});
+
+gulp.task('inject', () => {
+	gulp.src([
+		'./src/public/index.html'
+	])
+	.pipe(injectPartials({
+		start: '<inject src={{path}}>',
+		end: '</inject>',
+		removeTags: true
+	}))
+	.pipe(gulp.dest('./src/public'))
 });

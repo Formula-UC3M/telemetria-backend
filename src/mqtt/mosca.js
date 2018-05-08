@@ -1,4 +1,5 @@
 const mosca = require('mosca');
+const store = require("../store");
 
 // Configurar mosca conectado a mongodb
 const settings = {
@@ -23,16 +24,23 @@ moscaMQTTServer.on('clientDisconnected', client => {
 
 // Evento que se dispara cuando se publica un mensaje en la cola.
 moscaMQTTServer.on('published', (packet, client) => {
+	if (!client) {
+		return;
+	}
+
 	// Solo hacemos algo cuando se envia un mensaje al topic que a nosotros nos interesa.
 	if (packet.topic === 'formula/realtime-data') {
 		console.log(
-			`Cliente ${ client && client.id } publicando los datos: `,
-			packet.payload.toString());
+			`Cliente ${ client.id } publicando los datos: `,
+			packet.payload.toString()
+		);
+	} else if (packet.topic === 'data') {
+		store.save(client.id, packet.payload);
 	} else if (!packet.topic.toLowerCase().startsWith('$sys')) {
 		console.log(
-			`Cliente "${ client && client.id }" publicando datos en el topic
-			"${ packet.topic }". Recuerda que el servidor mqqt trabaja con los mensajes 
-			del topic "formula/realtime-data"`
+			'Cliente "' + client.id + '" publicando datos en el topic ' +
+			'"' + packet.topic + '". Recuerda que el servidor mqqt trabaja con los mensajes ' +
+			'del topic "formula/realtime-data"'
 		);
 	}
 });
