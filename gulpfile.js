@@ -59,12 +59,12 @@ gulp.task('lint', () => {
 
 gulp.task('inject', () => {
 	gulp.src([
-		'./src/public/index.html'
+		'./public/index.html'
 	])
 	.pipe(injectPartials({
 		start: '<inject src={{path}}>',
 		end: '</inject>',
 		removeTags: true
 	}))
-	.pipe(gulp.dest('./src/public'))
+	.pipe(gulp.dest('./public'));
 });

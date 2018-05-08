@@ -2,16 +2,17 @@
   "name": "formula-uc3m-server",
   "version": "0.0.1",
   "description": "Servidor para el proyecto formula-uc3m con guardado y explotación de datos en tiempo real.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "build": "chmod +x ./build.sh && ./build.sh",
+    "start": "node server.js",
     "test": "gulp test",
     "lint": "gulp lint"
   },
   "readme": "README.md",
   "repository": {
     "type": "git",
-    "url": "git@github.com:OSWeekends/formula-uc3m.git"
+    "url": "git@github.com:Formula-UC3M/telemetria-backend.git"
   },
   "keywords": [
     "osw",
@@ -33,15 +34,15 @@
   ],
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/OSWeekends/formula-uc3m/issues"
+    "url": "https://github.com/Formula-UC3M/telemetria-backend/issues"
   },
-  "homepage": "https://github.com/OSWeekends/formula-uc3m/tree/master/server#readme",
+  "homepage": "https://github.com/Formula-UC3M/telemetria-backend/tree/master/server#readme",
   "dependencies": {
-    "dotenv": "^5.0.1",
-    "mongoose": "^5.0.14",
-    "mosca": "^2.8.1",
-    "nconf": "^0.10.0",
-    "pillars": "^0.6.4"
+    "dotenv": "5.0.1",
+    "mongoose": "5.0.14",
+    "mosca": "2.8.1",
+    "nconf": "0.10.0",
+    "pillars": "0.6.4"
   },
   "devDependencies": {
     "chai": "3.5.0",
@@ -49,14 +50,14 @@
     "gulp": "3.9.1",
     "gulp-debug": "3.0.0",
     "gulp-eslint": "3.0.1",
-    "gulp-inject-partials": "^1.0.4",
+    "gulp-inject-partials": "1.0.4",
     "gulp-istanbul": "1.1.1",
     "gulp-jsdoc3": "1.0.1",
     "gulp-mocha": "3.0.1",
     "gulp-util": "3.0.8",
     "mocha": "3.1.2",
     "mocha-sinon": "1.1.6",
-    "path": "^0.12.7",
+    "path": "0.12.7",
     "sinon": "1.17.7"
   }
 }

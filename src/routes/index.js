@@ -5,44 +5,44 @@ const store = require("../store");
 
 
 const saveSpecificDataRoute = new Route(
-  {
-	path: '/save/:source/:key/:value',
-	method:["GET"]
-  },
+	{
+		path: '/save/:source/:key/:value',
+		method:["GET"]
+	},
   gw => {
-    store(gw.pathParams['source'],gw.pathParams['key'],gw.pathParams['value'])
-    gw.send(
+	store(gw.pathParams.source,gw.pathParams.key,gw.pathParams.value);
+	gw.send(
       'source: ' +
-        gw.pathParams['source'] +
+        gw.pathParams.source +
         ', key: ' +
-        gw.pathParams['key'] +
+        gw.pathParams.key +
         ', value: ' +
-        gw.pathParams['value']
+        gw.pathParams.value
     );
-  }
+}
 );
 routes.add(saveSpecificDataRoute);
 
 // Static Files and main route
 
 const mainRoute = new Route(
-  {
-    id: 'main',
-    path: '/',
-    method: 'GET',
-    session: true,
-  },
+	{
+		id: 'main',
+		path: '/',
+		method: 'GET',
+		session: true,
+	},
   gw => {
-    gw.file('./src/public/index.html');
-  }
+	gw.file('./public/index.html');
+}
 );
 var pillarsDocsStatic = new Route({
-  id: 'pillarsDocsStatic',
-  path: '/*:path',
-  directory: {
-    path: paths.resolve(__dirname, '../public'),
-    listing: true,
-  },
+	id: 'pillarsDocsStatic',
+	path: '/*:path',
+	directory: {
+		path: paths.resolve(__dirname, '../public'),
+		listing: true,
+	},
 });
 mainRoute.routes.add(pillarsDocsStatic);
 
