@@ -1,41 +1,50 @@
 const mongoose = require('mongoose');
 const dataSquema = mongoose.Schema(
 	{
-		d: {type: String},
+		timestamp: {type: String},
 		ecu: {
-			time: {type: Number},
-			speed: {type: Number},
-			ign_angle: {type: Number},
-			FR_lambda_target: {type: Number},
-			lambda_1: {type: Number},
-			map: {type: Number},
-			ect: {type: Number},
-			iat: {type: Number},
-			bap: {type: Number},
-			tp_main: {type: Number},
-			bat_voltage: {type: Number},
-			stuff: {type: Number},
+			water_temp_eng: {type: Number},
+			oil_temp_eng: {type: Number},
+			rpm: {type: Number},
 		},
 		wfl: {
       //Wheel front left
-			time: {type: Number},
-			speed: {type: Number},
+			suspension: {type: Number},
+			brake_temperature: {type: Number}
 		},
 		wfr: {
       //Wheel front right
-			time: {type: Number},
-			speed: {type: Number},
+			suspension: {type: Number},
+			brake_temperature: {type: Number}
 		},
 		wbl: {
       //Wheel back left
-			time: {type: Number},
-			speed: {type: Number},
+			suspension: {type: Number},
+			brake_temperature: {type: Number}
 		},
 		wbr: {
       //Wheel back right
-			time: {type: Number},
-			speed: {type: Number},
+			suspension: {type: Number},
+			brake_temperature: {type: Number}
 		},
+		radiator_temperature: {
+			_1: {type: Number},
+			_2: {type: Number},
+			_3: {type: Number}
+		},
+		pitot: {type: Number},
+		direction: {type: Number},
+		upright_temperature: {type: Number},
+		upleft_temperature: {type: Number},
+		throttle_position: {type: Number},
+		brake_position: {type: Number},
+		clutch: {type: Boolean},
+		speed: {type: Number},
+		accelerometer: {
+			_1: {type: Number},
+			_2: {type: Number},
+			_3: {type: Number}
+		}
 	},
   {timestamps: {createdAt: 'created', updatedAt: 'updated'}}
 );
