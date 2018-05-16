@@ -82,10 +82,12 @@ npm run lint
 
 De la creación y gestión del servidor de datos en tiempo real se encargará el equipo ArduData.
 
-- [Javier Gallego (@bifuer)](https://github.com/bifuer) (lider) Fullstack
-- [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) (lider) Fullstack
-- [Óliver BM(@umowis)](https://github.com/umowis) (contributor) Fullstack
+- [Javier Gallego (@bifuer)](https://github.com/bifuer) Lider
+- [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) Lider
+- [Óliver BM(@umowis)](https://github.com/umowis) Contributor
 - [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) (contributor) Pruebas de conexión Arduino <> Servidor
+- [Alfredo de la Calle(@bytelovers)](https://github.com/bytelovers) (contributor) Script build que trae el front y lo monta.
+- [Ulises Gascón(@UlisesGascon)](https://github.com/UlisesGascon) (contributor) Migración a nuevo repositorio y consultoría técnica.
 - Todas las personas que se quieran unir al equipo que envien un PR con su info sustituyendo este mensage :P
 
 ## Contribuir

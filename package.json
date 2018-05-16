@@ -23,20 +23,36 @@
     "real-time-data"
   ],
   "author": {
-    "name": "Javier Gallego",
-    "url": "https://github.com/bifuer"
+    "name": "Sebastián Cabanas",
+    "url": "https://github.com/Sediug"
   },
   "contributors": [
     {
-      "name": "Sebastián Cabanas",
-      "url": "https://github.com/Sediug"
+      "name": "Javier Gallego",
+      "url": "https://github.com/bifuer"
+    },
+    {
+      "name": "Óliver BM",
+      "url": "https://github.com/umowis"
+    },
+    {
+      "name": "Rubén Moreno",
+      "url": "https://github.com/rubenmoreno94"
+    },
+    {
+      "name": "Ulises Gascón",
+      "url": "https://github.com/UlisesGascon"
+    },
+    {
+      "name": "Alfredo de la Calle",
+      "url": "https://github.com/bytelovers"
     }
   ],
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/Formula-UC3M/telemetria-backend/issues"
   },
-  "homepage": "https://github.com/Formula-UC3M/telemetria-backend/tree/master/server#readme",
+  "homepage": "https://github.com/Formula-UC3M/telemetria-backend/tree/master/#readme",
   "dependencies": {
     "dotenv": "5.0.1",
     "mongoose": "5.0.14",
