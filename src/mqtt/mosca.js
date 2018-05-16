@@ -1,5 +1,6 @@
 const mosca = require('mosca');
 const store = require("../store");
+const storeObj = new store().init();
 
 // Configurar mosca conectado a mongodb
 const settings = {
@@ -39,6 +40,7 @@ moscaMQTTServer.on('published', (packet, client) => {
 			`Cliente ${ client.id } publicando los datos: `,
 			packet.payload.toString()
 		);
+		// storeObj.save(packet.topic, packet.payload.value)
 	}
 });
 
