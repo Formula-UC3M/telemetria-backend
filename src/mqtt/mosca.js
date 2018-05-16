@@ -28,19 +28,16 @@ moscaMQTTServer.on('published', (packet, client) => {
 		return;
 	}
 
+	if (packet.topic === 'formula/realtime-fake-data') {
+		return;
+	}
+
 	// Solo hacemos algo cuando se envia un mensaje al topic que a nosotros nos interesa.
-	if (packet.topic === 'formula/realtime-data') {
+	if (!packet.topic.toLowerCase().startsWith('$sys')) {
+		console.log('Topic');
 		console.log(
 			`Cliente ${ client.id } publicando los datos: `,
 			packet.payload.toString()
-		);
-	} else if (packet.topic === 'data') {
-		store.save(client.id, packet.payload);
-	} else if (!packet.topic.toLowerCase().startsWith('$sys')) {
-		console.log(
-			'Cliente "' + client.id + '" publicando datos en el topic ' +
-			'"' + packet.topic + '". Recuerda que el servidor mqqt trabaja con los mensajes ' +
-			'del topic "formula/realtime-data"'
 		);
 	}
 });
