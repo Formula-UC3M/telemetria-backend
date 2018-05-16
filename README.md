@@ -9,7 +9,7 @@
 ![TOP Lang](https://img.shields.io/github/languages/top/Formula-UC3M/telemetria-backend.svg)
 ![total lang](https://img.shields.io/github/languages/count/Formula-UC3M/telemetria-backend.svg)
 
-# Fórmula UC3M
+# Fórmula UC3M Telemetria
 
 > Proyecto para la realización de la telemetría al monoplaza de la UC3M
 
@@ -28,9 +28,7 @@ Para nosotros era un reto tecnológico que se salia fuera de nuestro control ya 
 Al minuto 1 ya empezamos a desvariar sobre las cosas que ibamos a realizar, todo fluía por ambas partes, todo ello aderezado por un ambiente muy bueno, y aquí nos teneis.... ¡sacando el proyecto adelante!
 
 Esperamos que a los que leáis estas líneas os haya cautivado la idea y os unáis a nosotros en este reto tan interesante que se sale de todos nuestros esquemas habituales.
-![header](.osweekends/img/OSW-project-GitHub-template-header.jpg)
 
-# Fórmula UC3M Server
 ## Servidor para guardado y explotación de datos en tiempo real.
 
 > Proyecto para la realización de la telemetría al monoplaza de la UC3M. Dentro del proyecto, esta parte se encargará de la gestión del guardado y explotación de datos, en tiempo real.
