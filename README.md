@@ -1,15 +1,15 @@
 ![header](.osweekends/img/OSW-project-GitHub-template-header.jpg)
 
-![travis](https://img.shields.io/travis/OSWeekends/formula-uc3m.svg)
-![issues abiertos](https://img.shields.io/github/issues/OSWeekends/formula-uc3m.svg)
-![issues promedio](https://img.shields.io/issuestats/i/github/OSWeekends/formula-uc3m.svg)
-![PR Abiertos](https://img.shields.io/github/issues-pr/OSWeekends/formula-uc3m.svg)
-![PR Promedio](https://img.shields.io/issuestats/p/github/OSWeekends/formula-uc3m.svg)
-![último commit](https://img.shields.io/github/last-commit/OSWeekends/formula-uc3m/master.svg)
-![TOP Lang](https://img.shields.io/github/languages/top/OSWeekends/formula-uc3m.svg)
-![total lang](https://img.shields.io/github/languages/count/OSWeekends/formula-uc3m.svg)
+![travis](https://img.shields.io/travis/Formula-UC3M/telemetria-backend.svg)
+![issues abiertos](https://img.shields.io/github/issues/Formula-UC3M/telemetria-documentacion/back.svg)
+![issues promedio](https://img.shields.io/issuestats/i/github/Formula-UC3M/telemetria-documentacion.svg)
+![PR Abiertos](https://img.shields.io/github/issues-pr/Formula-UC3M/telemetria-backend.svg)
+![PR Promedio](https://img.shields.io/issuestats/p/github/Formula-UC3M/telemetria-backend.svg)
+![último commit](https://img.shields.io/github/last-commit/Formula-UC3M/telemetria-backend/master.svg)
+![TOP Lang](https://img.shields.io/github/languages/top/Formula-UC3M/telemetria-backend.svg)
+![total lang](https://img.shields.io/github/languages/count/Formula-UC3M/telemetria-backend.svg)
 
-# Fórmula UC3M
+# Fórmula UC3M Telemetria
 
 > Proyecto para la realización de la telemetría al monoplaza de la UC3M
 
@@ -29,62 +29,67 @@ Al minuto 1 ya empezamos a desvariar sobre las cosas que ibamos a realizar, todo
 
 Esperamos que a los que leáis estas líneas os haya cautivado la idea y os unáis a nosotros en este reto tan interesante que se sale de todos nuestros esquemas habituales.
 
-### Equipo
+## Servidor para guardado y explotación de datos en tiempo real.
 
-Nota: Nos dividimos en tres equipo dentro del guild para este proyecto:
-- Team Formula, compuesto por los Alumn@s y profesor@s de FOrmula UC3M
-- Team ArduData, compuesto por gente de OSW centrada en extraer los datos del coche
-- Team VisualData, compuesto por gente de OSW centrada en la representación de los datos en tiempo real en el cliente final
+> Proyecto para la realización de la telemetría al monoplaza de la UC3M. Dentro del proyecto, esta parte se encargará de la gestión del guardado y explotación de datos, en tiempo real.
 
-**Team ArduData y Team VisualData**
-Los integrantes de los equipos son:
- - [Javier Gallego (@bifuer)](https://github.com/bifuer) (leader ArduData) Fullstack
- - [Ulises Gascón (@UlisesGascon)](https://github.com/UlisesGascon) (contributor) Fullstack
- - [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) (leader ArduData) Fullstack
- - [Bryan McEire (@mceire)](https://github.com/mceire) (contributor) Fullstack
- - [Carlos Hernandez (@CodingCarlos)](https://github.com/CodingCarlos) (leader VisualData) Fullstack
- - [Alfredo de la Calle (@ByteLovers)](https://github.com/bytelovers) (contributor) Fullstack
- - [Jonathan Martín (@jonasync)](https://github.com/jonasync) (Leader VisualData) Frontend
+## Tecnologías
 
-**Team Formula**
- - [Daniel Gómez (@dagomezl)](https://github.com/dagomezl) Líder del equipo Formula UC3M
- - [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) Encargado de la telemetría del equipo Formula UC3M
-
-**Servidor de datos en tiempo real (en desarrollo)**
-Puedes ver cómo va el desarrollo del servidor de datos en tiempo real [aquí](/server#readme)
-
-##### Agradecimientos
-- [Carlos Crisóstomo Vals @Kr0n0](https://github.com/Kr0n0) 
-- Resto del equipo [Formula UC3M](http://formulauc3m.com)
-
-### Tecnología utilizada
-
-#### Dependencias
-
-**Hardware**
-- **Arduino MEGA** Lectura de sensores del coche
-- **Raspberry Pi** Gestion de la comunicación del coche a nuestro backend via internet
-
-**Front-end**
-- **Vue.js**: Gestión de datos entre Back y front..
-- **D3.js**: Visualización de la información en forma de graficos potentes
-
-**Back-end**
-- [**Goku**](http://guilds.osweekends.com/): [Guild](https://github.com/OSWeekends/Guilds) que se encarga de hosting para el backend en la infraestrcutura de OSW, incluyendo subdominios...
+- [**Node JS**](https://nodejs.org/en/): Entorno de ejecución de Javascript que funciona sobre el motor v8 de Google Chrome.
 - [**MongoDB**](https://www.mongodb.com/es): Almacenamiento de datos para consulta en tiempo real.
-- [**Mosca**](https://github.com/mcollina/mosca/wiki): Broker [MQTT](https://geekytheory.com/que-es-mqtt) para [NodeJS](https://nodejs.org/en/).
+- [**Mosca**](https://github.com/mcollina/mosca/wiki): Broker [MQTT](https://geekytheory.com/que-es-mqtt) para [Node JS](https://nodejs.org/en/).
 - [**Pillars**](http://pillarsjs.com/): Framework de desarrollo web para Node.js.
 
-### Cómo contribuir en el proyecto
-Puedes participar de infinitas formas...
+## Instalación
 
-**Más informacion en [CONTRIBUTING.md](CONTRIBUTING.md)**
+Primero clona este repositorio:
 
-### Estado del proyecto.
+```shell
+git clone git@github.com:OSWeekends/formula-uc3m.git
+```
 
-Actualmente nos encontramos en fase de conceptualización. Estamos en el sprint 0 del proyecto, en la cual se espera que para el siguiente sprint ya tengamos las tecnologías y los materiales a nuestro alcance (Fin 30 de Marzo).
+Es necesario recordar que debes de tener instalado en tu ordenador MongoDB, Node JS y NPM (Gestor de paquetes de Node JS) antes de empezar a instalar este proyecto.
+Una vez clonado puedes entrar a la carpeta `./server` y ejecutar el siguiente comando:
 
-[Aquí](https://github.com/OSWeekends/formula-uc3m/milestone/1) puedes ver la carga de trabajo actual
+```shell
+npm install
+```
+
+Una vez realizado esto ya deberían estar instaladas todas las dependencias de este paquete. Ahora debes copiar el fichero `.env.example` y crear un fichero `.env`, dentro debes sustituir la configuración de ejemplo por la de tu base de datos.
+
+Una ver realizado esto ya estaría completamente instalado y listo para arrancar (recuerda arrancar el servidor de base de datos antes de arrancar este servidor).
+
+**Cómo iniciar el servidor**
+
+```sh
+npm start
+```
+Abre la url http://localhost:3001/ (Siendo localhost y 3001 el host y el port que asignaste en el archivo .env).
+
+**Cómo comprobar los test**
+
+```sh
+npm test
+```
+
+**Cómo comprobar que el código cumple la especificación del [linter](https://eslint.org/docs/about/)**
+
+```sh
+npm run lint
+```
+
+## Equipo
+
+De la creación y gestión del servidor de datos en tiempo real se encargará el equipo ArduData.
+
+- [Javier Gallego (@bifuer)](https://github.com/bifuer) (lider) Fullstack
+- [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) (lider) Fullstack
+- [Óliver BM(@umowis)](https://github.com/umowis) (contributor) Fullstack
+- [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) (contributor) Pruebas de conexión Arduino <> Servidor
+- Todas las personas que se quieran unir al equipo que envien un PR con su info sustituyendo este mensage :P
+
+## Contribuir
+Puedes contribuir al apartado de backend, dentro del proyecto de Formula UC3M, leyendo las [issues con la etiqueta back](https://github.com/Formula-UC3M/telemetria-documentacion/issues?q=is%3Aissue+is%3Aopen+label%3ABack). Toda la documentación issues y roadmap se encuentran en el proyecto [Telemetria Documentación](https://github.com/Formula-UC3M/telemetria-documentacion).
 
 
 ### Licencia
