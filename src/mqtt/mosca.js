@@ -40,7 +40,14 @@ moscaMQTTServer.on('published', (packet, client) => {
 			`Cliente ${ client.id } publicando los datos: `,
 			packet.payload.toString()
 		);
-		// storeObj.save(packet.topic, packet.payload.value)
+
+		/*
+		try {
+			storeObj.save(packet.topic, packet.payload.value)
+		} catch(e) {
+			console.error('Error:' +  e.message);
+		}
+		*/
 	}
 });
 
