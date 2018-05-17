@@ -10,12 +10,12 @@ const dataSquema = mongoose.Schema(
 			rpm: { type: Number, default: null },
 		},
 		wfl: {
-			 //Wheel front left
+			//Wheel front left
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
 		wfr: {
-			 //Wheel front right
+			//Wheel front right
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
@@ -51,7 +51,7 @@ const dataSquema = mongoose.Schema(
   {timestamps: {createdAt: 'created', updatedAt: 'updated'}}
 );
 
-const model = mongoose.model('data', dataSquema);
+const model = mongoose.model('Data', dataSquema);
 
 model.findByRange = function(from, to, callback) {
 	model
