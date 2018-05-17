@@ -29,16 +29,16 @@ UserSchema.pre('save', function(next) {
 
 const model = mongoose.model('User', UserSchema);
 model.findAndValidate = (email, password, cb) => {
-	model.find({ email }, (err, users) => {
+	model.findOne({ email }).select('password').exec((err, user) => {
 		if (err) {
 			cb(err);
 		}
 
-		if (!users.length) {
+		if (!user) {
 			return cb('No existe ningún usuario con esas credenciales');
 		}
-		console.log(users);
-		hashPassword(users[0].password, (err, hash) => {
+		
+		hashPassword(user.password, (err, hash) => {
 			if (err) {
 				return cb(err);
 			}
@@ -48,7 +48,7 @@ model.findAndValidate = (email, password, cb) => {
 					cb(err);
 				}
 
-				cb(null, valid, users[0]);
+				cb(null, valid, user);
 			});
 		});
 	});
