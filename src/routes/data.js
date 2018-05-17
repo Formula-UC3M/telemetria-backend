@@ -1,5 +1,6 @@
 /* global Route */
-const store = require("../lib/store");
+const dataModel = require('../models/data');
+const store = require('../lib/store');
 const storeObj = new store().init();
 
 const dataRoute = new Route(
@@ -24,7 +25,13 @@ const dataRoute = new Route(
 				}
 			});
 		} else {
-			// @todo Implementar extracción de datos.
+			dataModel.findByRange(gw.params.from, gw.params.to, (err, data) => {
+				if (err) {
+					gw.error(500, Error(err));
+				}
+
+				gw.json(data, {deep: 0});
+			});
 		}
 	}
 );

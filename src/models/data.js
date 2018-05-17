@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
+
 const dataSquema = mongoose.Schema(
 	{
 		timestamp: { type: String, default: Date.now() },
@@ -8,22 +10,22 @@ const dataSquema = mongoose.Schema(
 			rpm: { type: Number, default: null },
 		},
 		wfl: {
-             //Wheel front left
+			 //Wheel front left
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
 		wfr: {
-             //Wheel front right
+			 //Wheel front right
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
 		wbl: {
-            //Wheel back left
+			//Wheel back left
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
 		wbr: {
-            //Wheel back right
+			//Wheel back right
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
@@ -48,4 +50,11 @@ const dataSquema = mongoose.Schema(
 	},
   {timestamps: {createdAt: 'created', updatedAt: 'updated'}}
 );
-module.exports = mongoose.model('data', dataSquema);
+
+const model = mongoose.model('data', dataSquema);
+
+model.findByRange = function(from, to, callback) {
+	model.find({ $gt: moment(from).unix(), $lt: moment(to).unix() }, callback);
+};
+
+module.exports = model;
