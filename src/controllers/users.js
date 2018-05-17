@@ -10,7 +10,7 @@ function signUp (gw) {
 
 	User.find({ email: payload.email }, (err, dbUsers) => {
 		if (err) {
-			return gw.error(500,  Error(`Error comprobando si existe el usuario con email '${ payload.email }'. Message: ${ err }`));
+			return gw.error(500,  Error(`Error comprobando si existe el usuario con email '${ payload.email }'. Mensage: ${ err }`));
 		}
 
 		if (dbUsers && dbUsers.length) {
@@ -39,18 +39,18 @@ function signUp (gw) {
 function login (gw) {
 	const payload = Object.assign({}, gw.content.params);
 
-	User.find({ email: payload.email }, (err, users) => {
+	User.findAndValidate(payload.email, payload.password, (err, valid, user) => {
 		if (err) {
-			return gw.error(500,  Error(`Error recuperando el usuario con email '${ payload.email }'. Message: ${ err }`));
+			return gw.error(500,  Error(`Error recuperando el usuario con email '${ payload.email }'. Mensage: ${ err }`));
 		}
-
-		if (!users.length) {
-			return gw.error(404, Error('No existe ningún usuario con esas credenciales'));
+		
+		if (!valid) {
+			return gw.error(500,  Error(`La contraseña no es válida!`));
 		}
 
 		gw.json({
 			message: 'Te has logueado correctamente',
-			token: service.createToken(users[0])
+			token: service.createToken(user)
 		});
 	});
 }

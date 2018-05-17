@@ -10,23 +10,48 @@ const UserSchema = new Schema({
 	lastLogin: Date
 });
 
+function hashPassword(password, cb) {
+	return bcrypt.hash(password, 10, cb);
+}
+
 UserSchema.pre('save', function(next) {
 	const user = this;
 
-	bcrypt.genSalt(10, (err, salt) => {
+	hashPassword(user.password, (err, hash) => {
 		if (err) {
 			return next(err);
 		}
 
-		bcrypt.hash(user.password, salt, (err, hash) => {
-			if (err) {
-				return next(err);
-			}
-
-			user.password = hash;
-			next();
-		});
+		user.password = hash;
+		next();
 	});
 });
 
-module.exports = mongoose.model('User', UserSchema);
+const model = mongoose.model('User', UserSchema);
+model.findAndValidate = (email, password, cb) => {
+	model.find({ email }, (err, users) => {
+		if (err) {
+			cb(err);
+		}
+
+		if (!users.length) {
+			return cb('No existe ningún usuario con esas credenciales');
+		}
+		console.log(users);
+		hashPassword(users[0].password, (err, hash) => {
+			if (err) {
+				return cb(err);
+			}
+	
+			bcrypt.compare(password, hash, (err, valid) =>{
+				if (err) {
+					cb(err);
+				}
+
+				cb(null, valid, users[0]);
+			});
+		});
+	});
+};
+
+module.exports = model;
