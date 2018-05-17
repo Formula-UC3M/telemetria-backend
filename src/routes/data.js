@@ -23,7 +23,7 @@ const dataRoute = new Route(
 						GET: 'Devuelve todos los datos guardados entre "from" y "to". Pj. /data/ecu/rpm',
 					}
 				}
-			});
+			}, { deep: 0 });
 		} else {
 			dataModel.findByRange(gw.params.from, gw.params.to, (err, data) => {
 				if (err) {

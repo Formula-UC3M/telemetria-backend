@@ -54,7 +54,12 @@ const dataSquema = mongoose.Schema(
 const model = mongoose.model('data', dataSquema);
 
 model.findByRange = function(from, to, callback) {
-	model.find({ $gt: moment(from).unix(), $lt: moment(to).unix() }, callback);
+	model
+		.find()
+		.where('timestanp')
+			.gt(moment(from).unix())
+			.lt(moment(to).unix())
+		.exec(callback);
 };
 
 module.exports = model;
