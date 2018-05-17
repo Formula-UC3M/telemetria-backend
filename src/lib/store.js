@@ -1,50 +1,9 @@
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+const DataModel = require('../models/data');
 
-const DataModel = require('./model');
-const baseData = {
-	timestamp: null,
-	ecu: {
-		water_temp_eng: null,
-		oil_temp_eng: null,
-		rpm: null,
-	},
-	wfl: {
-		suspension: null,
-		brake_temperature: null
-	},
-	wfr: {
-		suspension: null,
-		brake_temperature: null
-	},
-	wbl: {
-		suspension: null,
-		brake_temperature: null
-	},
-	wbr: {
-		suspension: null,
-		brake_temperature: null
-	},
-	radiator_temperature: {
-		_1: null,
-		_2: null,
-		_3: null
-	},
-	pitot: null,
-	direction: null,
-	upright_temperature: null,
-	upleft_temperature: null,
-	throttle_position: null,
-	brake_position: null,
-	clutch: null,
-	speed: null,
-	accelerometer: {
-		_1: null,
-		_2: null,
-		_3: null
-	}
-};
-
+/**
+ * Saves data in database every X miliseconds while something gets saved. Store the
+ * data until .env.RESOLUTION miliseconds then save the model in the mongo database.
+ */
 module.exports = function store() {
 	// Private attributes.
 	let initialized = false;
@@ -53,7 +12,7 @@ module.exports = function store() {
 
 	// Private methods
 	function restart() {
-		data = Object.assign(new DataModel(), baseData);
+		data = new DataModel();
 		updated = false;
 	}
 	
@@ -112,4 +71,4 @@ module.exports = function store() {
 
 		return this;
 	};
-}
+};

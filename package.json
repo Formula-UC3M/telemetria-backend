@@ -54,10 +54,12 @@
   },
   "homepage": "https://github.com/Formula-UC3M/telemetria-backend/tree/master/#readme",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "dotenv": "5.0.1",
+    "jade": "^1.11.0",
+    "jwt-simple": "^0.5.1",
     "mongoose": "5.0.14",
     "mosca": "2.8.1",
-    "nconf": "0.10.0",
     "pillars": "0.6.4"
   },
   "devDependencies": {
