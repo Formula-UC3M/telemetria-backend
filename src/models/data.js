@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const moment = require('moment');
 
-const dataSquema = mongoose.Schema(
+const dataSquema = new Schema(
 	{
 		timestamp: { type: String, default: Date.now() },
 		ecu: {
@@ -48,7 +49,7 @@ const dataSquema = mongoose.Schema(
 			_3: { type: Number, default: null },
 		}
 	},
-  {timestamps: {createdAt: 'created', updatedAt: 'updated'}}
+	{timestamps: {createdAt: 'created', updatedAt: 'updated'}}
 );
 
 const model = mongoose.model('Data', dataSquema);
@@ -57,8 +58,8 @@ model.findByRange = function(from, to, callback) {
 	model
 		.find()
 		.where('timestanp')
-			.gt(moment(from).unix())
-			.lt(moment(to).unix())
+			.gte(moment(from).unix())
+			.lte(moment(to).unix())
 		.exec(callback);
 };
 
