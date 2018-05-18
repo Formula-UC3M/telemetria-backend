@@ -7,13 +7,27 @@ html(lang='es')
 		meta(name='author', content='Open Source Weekends')
 		title Rangos - Telemetría FormulaUC3M - OSW
 		link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB", crossorigin="anonymous")
-		link(href='../resources/css/forms.css', rel='stylesheet')
+		link(href='../resources/css/styles.css', rel='stylesheet')
+		script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js", integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=", crossorigin="anonymous")
+		script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js", integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T", crossorigin="anonymous")
 		script(src='../resources/js/ranges.js')
 	body
 		header
+			p#currentVersion
 			h1 Rangos de los Sensores
-		
-		.container#page-content
-		
+
+		div#page-content
+		#resultModal(class="modal fade")
+			div(class="modal-dialog")
+				div(class="modal-content")
+					div(class="modal-header")
+						h4(class="modal-title")
+						button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times;
+					
+					div(class="modal-body")
+						p#modal-b-content
+					div(class="modal-footer")
+					button(type="button" class="btn btn-primary btn-md" data-dismiss="modal") Cerrar
+
 		footer
-			p.text-muted.text-center © FormulaUC3M - Open Source Weekends 2018
+			p.text-center © FormulaUC3M - Open Source Weekends 2018
