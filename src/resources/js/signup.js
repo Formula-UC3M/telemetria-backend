@@ -10,7 +10,9 @@
 				body: new FormData(formSignUp)
 			})
 			.then(res => res.json())
-			.then(data => localStorage.setItem('token', data.token))
+			.then(data => {
+				window.location.href = '/login';
+			})
 			.catch(error => alert(error));
 		});
 	});
