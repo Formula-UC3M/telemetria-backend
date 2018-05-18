@@ -4,6 +4,12 @@ function errorHandler(gw, error) {
 	return error && gw.error(500, Error(error));
 }
 
+function parseDocument(data) {
+	data = data._doc;
+	data._id = String(data._id);
+	return data;
+}
+
 function get(gw) {
 	// By version
 	if (gw.params.version) {
@@ -14,13 +20,13 @@ function get(gw) {
 				return gw.error(500, Error('La versión de rangos que intentas obtener no existe en la base de datos.'));
 			}
 	
-			gw.json(ranges, { deep: 0 });
+			gw.json(parseDocument(ranges), { deep: 0 });
 		});
 	} else if (gw.params.id) {
 		// By id
 		RangesModel.findOne({ _id: gw.params.id }, (err, ranges) => {
 			errorHandler(gw, err);
-			gw.json(ranges, { deep: 0 });
+			gw.json(parseDocument(ranges), { deep: 0 });
 		});
 	} else {
 		// Default last saved version or default values.
@@ -31,6 +37,8 @@ function get(gw) {
 				ranges = Object.assign({}, new RangesModel()._doc);
 				ranges._id = String(ranges._id);
 				ranges.version = 1;
+			} else {
+				ranges = parseDocument(ranges);
 			}
 	
 			gw.json(ranges, { deep: 0 });
@@ -80,7 +88,7 @@ function create(gw) {
 
 		return gw.json({
 			code: 200,
-			data
+			data: parseDocument(data)
 		});
 	});
 }
