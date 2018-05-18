@@ -10,19 +10,13 @@ const UserSchema = new Schema({
 	lastLogin: Date
 });
 
-function hashPassword(password, cb) {
-	return bcrypt.hash(password, 10, cb);
-}
-
 UserSchema.pre('save', function(next) {
-	const user = this;
-
-	hashPassword(user.password, (err, hash) => {
+	bcrypt.hash(this.password, 10, (err, hash) => {
 		if (err) {
 			return next(err);
 		}
 
-		user.password = hash;
+		this.password = hash;
 		next();
 	});
 });
@@ -38,18 +32,12 @@ model.findAndValidate = (email, password, cb) => {
 			return cb('No existe ningún usuario con esas credenciales');
 		}
 		
-		hashPassword(user.password, (err, hash) => {
+		bcrypt.compare(password, user.password, (err, valid) =>{
 			if (err) {
-				return cb(err);
+				cb(err);
 			}
-	
-			bcrypt.compare(password, hash, (err, valid) =>{
-				if (err) {
-					cb(err);
-				}
 
-				cb(null, valid, user);
-			});
+			cb(null, valid, user);
 		});
 	});
 };
