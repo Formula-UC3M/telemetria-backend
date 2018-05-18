@@ -7,12 +7,13 @@ module.exports = function(gw, next) {
 		return next();
 	}
 
-	if (!gw.auth) {
+	const auth = gw.req.headers.authorization;
+	const token = auth ? auth.split(' ')[1] : false;
+	
+	if (!auth || !token) {
 		return gw.redirect('/login');
 	}
 
-	const token = gw.auth;
-	console.log('token', token);
 	services.decodeToken(token).then(response => {
 		next();
 	}).catch(error => {
