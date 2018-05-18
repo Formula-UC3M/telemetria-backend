@@ -46,7 +46,11 @@
 		}
 
 		setEvents() {
-			
+			document.querySelectorAll('table.table input').forEach(input => {
+				input.addEventListener('keyup', e => {
+					console.log(e.target)
+				});
+			});
 		}
 
 		render() {
