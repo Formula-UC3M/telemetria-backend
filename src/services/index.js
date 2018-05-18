@@ -10,7 +10,7 @@ function createToken (user) {
 }
 
 function decodeToken (token) {
-	const decoded = new Promise((resolve, reject) => {
+	return new Promise((resolve, reject) => {
 		try {
 			const payload = jwt.decode(token, process.env.JWT_SECRET_TOKEN);
 
@@ -28,8 +28,6 @@ function decodeToken (token) {
 			});
 		}
 	});
-
-  return decoded
 }
 
 module.exports = {

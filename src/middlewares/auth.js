@@ -8,10 +8,11 @@ module.exports = function(gw, next) {
 	}
 
 	if (!gw.auth) {
-		return gw.error(403, Error('No tienes autorización'));
+		return gw.redirect('/login');
 	}
 
-	const token = gw.auth.split(' ')[1];
+	const token = gw.auth;
+	console.log('token', token);
 	services.decodeToken(token).then(response => {
 		next();
 	}).catch(error => {
