@@ -15,7 +15,7 @@ require('./src/middlewares');
 
 // Configurando servidor web (pillars).
 const http = project.services.get('http');
-// project.config.favicon = "favico.ico";
+project.config.favicon = './src/resources/img/favico.ico';
 project.config.debug = process.env.DEBUG_MODE;
 http.configure({
 	host: process.env.HOST,
