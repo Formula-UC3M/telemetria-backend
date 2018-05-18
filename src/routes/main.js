@@ -44,6 +44,17 @@ mainRoute.routes.add(new Route(
 	}
 ));
 
+mainRoute.routes.add(new Route(
+	{
+		id: 'view-ranges',
+		path: '/ranges',
+		method: 'GET',
+	},
+	gw => {
+		gw.render(paths.resolve(__dirname, '../views/ranges.jade'));
+	}
+));
+
 mainRoute.routes.add(new Route({
 	id: 'static-frontend',
 	path: '/*:path',
