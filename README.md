@@ -59,6 +59,14 @@ Una vez realizado esto ya deberían estar instaladas todas las dependencias de e
 
 Una ver realizado esto ya estaría completamente instalado y listo para arrancar (recuerda arrancar el servidor de base de datos antes de arrancar este servidor).
 
+**¡Importante! Antes de iniciar el servidor**
+
+Antes de arrancar el servidor debes tener arrancada la base de datos mongo db usando el demonio **mongod**.
+
+```sh
+mongod
+```
+
 **Cómo iniciar el servidor**
 
 ```sh
