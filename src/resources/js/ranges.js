@@ -1,55 +1,156 @@
-(() => {
+/* global jQuery */
+(($) => {
 	const authToken = localStorage.getItem('token');
 	
 	if (!authToken) {
 		return window.location.href = '/login';
 	}
 
+	const ecuFields = [
+		{ label: 'Temperatura Agua', slug: 'waterTempEng' },
+		{ label: 'Temperatura Aceite', slug: 'oilTempEng' },
+		{ label: 'Revoluciones Por Minuto', slug: 'rpm' }
+	];
+
 	const fields = [
 		{ label: 'Acelerometro', slug: 'accelerometer' },
-		{ label: 'Posición Freno', slug: 'brake_position' },
-		{ label: 'Temperatura Freno', slug: 'brake_temperature' },
+		{ label: 'Posición Freno', slug: 'brakePosition' },
+		{ label: 'Temperatura Freno', slug: 'brakeTemperature' },
 		{ label: 'Dirección', slug: 'direction' },
 		{ label: 'Suspensión', slug: 'suspension' },
-		{ label: 'Temperatura del radiador', slug: 'radiator_temperature' },
+		{ label: 'Temperatura del radiador', slug: 'radiatorTemperature' },
 		{ label: 'Velocidad', slug: 'speed' },
 		{ label: 'Valvula de Pitot', slug: 'pitot' },
-		{ label: 'Posición Acelerador', slug: 'throttle_position' },
-		{ label: 'Temperatura manguetas', slug: 'upright_temperature' },
+		{ label: 'Posición Acelerador', slug: 'throttlePosition' },
+		{ label: 'Temperatura manguetas', slug: 'uprightTemperature' }
 	];
+
+	function display(title, message) {
+		document.querySelectorAll('#resultModal .modal-header > .modal-title')[0].innerHTML = title;
+		document.querySelectorAll('#resultModal #modal-b-content')[0].innerHTML = message;
+		$('#resultModal').modal();
+	}
 
 	class TableForm {
 		constructor(data) {
 			this.root = document.getElementById('page-content');
+			this.versionContainer = document.getElementById('currentVersion');
+			this.id = data._id;
+			this.version = data.version;
+			this.created_at = data.created_at;
 			this.data = data;
+			this.updated = false;
+			this.updateVersion();
 			this.render();
 			this.setEvents();
 		}
-		
-		buildRow(label, slug, min, max) {
+
+		updateVersion() {
+			this.versionContainer.innerHTML = 'Version: ' + this.version + ' | ' + this.created_at;
+		}
+
+		update(key, value) {
+			const tree = key.split('.');
+			let parent = this.data;
+			
+			for (let i = 0; i < tree.length; i++) {
+				if (i < tree.length - 1) {
+					parent = parent[tree[i]];
+				} else {
+					parent[tree[i]] = value;
+				}
+			}
+
+			this.updated = true;
+		}
+
+		buildRow(label, slug, key, min, max) {
 			return `<tr>
 				<td>${ label }</td>
 				<td>
-					<input id="input${ slug }Min" type="number" placeholder="0" name="${ slug }Min" class="form-control" value="${ min }">
+					<input
+						id="input${ slug }Min"
+						type="number"
+						placeholder="Min"
+						data-key="${ key + '.min' }"
+						name="${ slug }Min"
+						class="form-control"
+						value="${ min }"
+					/>
 				</td>
 				<td>
-					<input id="input${ slug }Max" type="number" placeholder="0" name="${ slug }Max" class="form-control" value="${ max }">
+					<input
+						id="input${ slug }Max"
+						type="number"
+						placeholder="Max"
+						data-key="${ key + '.max' }"
+						name="${ slug }Max"
+						class="form-control"
+						value="${ max }"
+					/>
 				</td>
 			</tr>`;
 		}
 		
 		buildBody() {
-			return fields.map(field => {
-				const { min, max } = this.data[field.slug];
-				return this.buildRow(field.label, field.slug, min, max);
-			}).join('');
+			const parser = (data, isEcu, field) => {
+				const { min, max } = data[field.slug];
+				const key = isEcu ? 'ecu.' + field.slug : field.slug;
+				return this.buildRow(field.label, field.slug, key, min, max);
+			};
+
+			return [
+				...fields.map(parser.bind(this, this.data, false)),
+				...ecuFields.map(parser.bind(this, this.data.ecu, true))
+			].join('');
 		}
 
 		setEvents() {
 			document.querySelectorAll('table.table input').forEach(input => {
 				input.addEventListener('keyup', e => {
-					console.log(e.target)
+					this.update(e.target.getAttribute('data-key'), e.target.value);
 				});
+			});
+
+			document.getElementById('btn-save').addEventListener('click', e => {
+				e.preventDefault();
+
+				if (!this.updated) {
+					return console.info('No hay cambios');
+				}
+
+				const bodyData = new FormData();
+				const parser = (data, isEcu, field) => {
+					const { min, max } = data[field.slug];
+					const key = isEcu ? 'ecu.' + field.slug : field.slug;
+					
+					min && bodyData.append(key + '.min', min);
+					max && bodyData.append(key + '.max', max);
+				};
+
+				fields.forEach(parser.bind(this, this.data, false));
+				ecuFields.map(parser.bind(this, this.data.ecu, true));
+
+				fetch('/api/ranges', {
+					method: 'POST',
+					headers: new Headers({
+						'Authorization': 'Bearer ' + authToken
+					}),
+					body: bodyData
+				})
+				.then(res => res.json())
+				.then(result => {
+					if (result.code >= 300) {
+						return display('Error', result.error);
+					}
+
+					this.version = result.data.version;
+					this.created_at = result.data.created_at;
+					this.updated = false;
+					this.updateVersion();
+					display('Resultado', 'Los rangos han sido guardados con exito.');
+				})
+				.catch(error => display('Error', error));
 			});
 		}
 
@@ -57,6 +158,7 @@
 			this.root.innerHTML = `
 				<div class="ranges-row">
 					<div class="panel panel-primary">
+						<button id="btn-save" class="btn btn-success btn-sm">Guardar Rangos</button>
 						<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -87,8 +189,8 @@
 			new TableForm(data);
 		})
 		.catch(error => {
-			alert(error);
+			display('Error', error);
 		});
 		
 	});
-})();
+})(jQuery);
