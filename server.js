@@ -7,9 +7,11 @@ const mongoose = require('mongoose');
 const jade = require('jade');
 const moscaMQTTServer = require('./src/lib/mqtt/mosca');
 
-// Añadiendo rutas al servidor web.
 console.info('Añadiendo rutas');
 require('./src/routes');
+
+console.info('Añadiendo middlewares.');
+require('./src/middlewares');
 
 // Configurando servidor web (pillars).
 const http = project.services.get('http');
