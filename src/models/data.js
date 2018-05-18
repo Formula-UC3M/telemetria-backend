@@ -49,7 +49,7 @@ const dataSquema = new Schema(
 			_3: { type: Number, default: null },
 		}
 	},
-	{timestamps: {createdAt: 'created', updatedAt: 'updated'}}
+	{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }}
 );
 
 const model = mongoose.model('Data', dataSquema);
