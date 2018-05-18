@@ -24,7 +24,9 @@
 		.then(data => {
 			renderForm(data);
 		})
-		.catch(error => alert(error));
+		.catch(error => {
+			alert(error);
+		});
 		
 	});
 })();
