@@ -18,23 +18,67 @@ body {
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 60px;
     background-color: #f5f5f5;
 }
 
+header, footer {
+    background: linear-gradient(118deg, #fff, #e6e6e6);
+    background-size: 400% 400%;
+    -webkit-animation: Gradinte 5s ease infinite;
+    -moz-animation: Gradiete 5s ease infinite;
+    -o-animation: Gradinte 5s ease infinite;
+    animation: Gradiente 5s ease infinite;
+}
+
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
-    height: 60px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1,
+header h2,
+header h3,
+header p {
+    text-align: center;
+    color: #555;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-top: 5px;
+}
+
+header p#currentVersion {
+    position: fixed;
+    top: 13px;
+    left: 20px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    height: 40px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    border-top: 1px solid #ddd;
 }
 
+footer p {
+    margin-bottom: 0;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Formularios de registro y inicio de sesión */
 .form-signin {
     width: 100%;
     max-width: 420px;
@@ -58,7 +102,7 @@ footer {
     left: 0;
     display: block;
     width: 100%;
-    margin-bottom: 0; /* Override default `<label>` margin */
+    margin-bottom: 0;
     line-height: 1.5;
     color: #495057;
     border: 1px solid transparent;
@@ -98,25 +142,46 @@ footer {
     color: #777;
 }
 
+/* Página de rangos */
+#page-content {
+    overflow: auto;
+    height: calc(100vh - 100px);
+    width: 100%;
+    padding: 0 10vw;
+}
+
+#btn-save {
+    position: fixed;
+    top: 4px;
+    right: 11vw;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
 .ranges-row .form-control {
-    border:0; box-shadow:none
+    border: 0;
+    box-shadow: none;
 }
 
 .ranges-row .form-control:focus {
-    box-shadow:none;
+    box-shadow: none;
 }
 
 .ranges-row label {
     color:#999;
     padding-top: 5px;
-    display:block;
-    left:0;
-    width:100%;
+    display: block;
+    left: 0;
+    width: 100%;
 }
 
 .ranges-row .panel {
-    border-width:2px;
-    border-radius:7px
+    border-width: 2px;
+    border-radius: 7px
+}
+
+.ranges-row .panel > table {
+    margin-top: 50px;
 }
 
 .ranges-row .table-bordered > thead > tr > th,
@@ -125,13 +190,13 @@ footer {
 .ranges-row .table-bordered > thead > tr > td,
 .ranges-row .table-bordered > tbody > tr > td,
 .ranges-row .table-bordered > tfoot > tr > td {
-    border:2px solid #eee;
+    border: 2px solid #eee;
     vertical-align: middle;
     background: #fff;
 }
 
 .ranges-row .table-bordered {
-    border-radius:7px
+    border-radius: 7px
 }
 
 .ranges-row .form-control::-moz-placeholder {
@@ -147,7 +212,52 @@ footer {
     color: #999
 }
 
-#page-content {
-    overflow: auto;
-    height: 80vh;
+
+/* Animaciones para el grandiente */
+@-webkit-keyframes Gradiente {
+    0% {
+        background-position:0% 50%;
+    }
+    50% {
+        background-position:100% 50%;
+    }
+    100% {
+        background-position:0% 50%;
+    }
+}
+
+@-moz-keyframes Gradiente {
+     0% {
+        background-position:0% 50%;
+    }
+    50% {
+        background-position:100% 50%;
+    }
+    100% {
+        background-position:0% 50%;
+    }
+}
+
+@-o-keyframes Gradiente {
+     0% {
+        background-position:0% 50%;
+    }
+    50% {
+        background-position:100% 50%;
+    }
+    100% {
+        background-position:0% 50%;
+    }
+}
+
+@keyframes Gradiente { 
+     0% {
+        background-position:0% 50%;
+    }
+    50% {
+        background-position:100% 50%;
+    }
+    100% {
+        background-position:0% 50%;
+    }
 }
