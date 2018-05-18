@@ -97,3 +97,57 @@ footer {
     font-size: 12px;
     color: #777;
 }
+
+.ranges-row .form-control {
+    border:0; box-shadow:none
+}
+
+.ranges-row .form-control:focus {
+    box-shadow:none;
+}
+
+.ranges-row label {
+    color:#999;
+    padding-top: 5px;
+    display:block;
+    left:0;
+    width:100%;
+}
+
+.ranges-row .panel {
+    border-width:2px;
+    border-radius:7px
+}
+
+.ranges-row .table-bordered > thead > tr > th,
+.ranges-row .table-bordered > tbody > tr > th,
+.ranges-row .table-bordered > tfoot > tr > th,
+.ranges-row .table-bordered > thead > tr > td,
+.ranges-row .table-bordered > tbody > tr > td,
+.ranges-row .table-bordered > tfoot > tr > td {
+    border:2px solid #eee;
+    vertical-align: middle;
+    background: #fff;
+}
+
+.ranges-row .table-bordered {
+    border-radius:7px
+}
+
+.ranges-row .form-control::-moz-placeholder {
+    color: #999;
+    opacity: 1
+}
+
+.ranges-row .form-control:-ms-input-placeholder {
+    color: #999
+}
+
+.ranges-row .form-control::-webkit-input-placeholder {
+    color: #999
+}
+
+#page-content {
+    overflow: auto;
+    height: 80vh;
+}

@@ -44,10 +44,6 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		upleft_temperature: {
-			min: { type: Number, default: 0 },
-			max: { type: Number, default: null },
-		},
 		throttle_position: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
