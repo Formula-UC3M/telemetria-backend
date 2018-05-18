@@ -7,11 +7,11 @@ const RangesSchema = new Schema(
 	{
 		version: { type: Number, unique: true, default: 1 },
 		ecu: {
-			water_temp_eng: {
+			waterTempEng: {
 				min: { type: Number, default: 0 },
 				max: { type: Number, default: null },
 			},
-			oil_temp_eng:{
+			oilTempEng:{
 				min: { type: Number, default: 0 },
 				max: { type: Number, default: null },
 			},
@@ -24,11 +24,11 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		brake_temperature: {
+		brakeTemperature: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		radiator_temperature: {
+		radiatorTemperature: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
@@ -40,15 +40,15 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		upright_temperature: {
+		uprightTemperature: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		throttle_position: {
+		throttlePosition: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		brake_position: {
+		brakePosition: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
@@ -60,7 +60,7 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-	}, {timestamps: {createdAt: 'created'}}
+	}, {timestamps: { createdAt: 'created_at', updatedAt: 'update_at' }}
 );
 
 // Añadir auto incremento de versión.
