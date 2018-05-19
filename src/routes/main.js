@@ -35,6 +35,17 @@ mainRoute.routes.add(new Route(
 
 mainRoute.routes.add(new Route(
 	{
+		id: 'view-logout',
+		path: '/logout',
+		method: 'GET',
+	},
+	gw => {
+		gw.render(paths.resolve(__dirname, '../views/logout.jade'));
+	}
+));
+
+mainRoute.routes.add(new Route(
+	{
 		id: 'view-signup',
 		path: '/signup',
 		method: 'GET',
