@@ -63,6 +63,14 @@ header p#currentVersion {
     font-weight: bold;
 }
 
+header a#logOutLink {
+    position: fixed;
+    top: 15px;
+    right: 16px;
+    font-size: 13px;
+    color: #2196f3;
+}
+
 footer {
     position: fixed;
     bottom: 0;

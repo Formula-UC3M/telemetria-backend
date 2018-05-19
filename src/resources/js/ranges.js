@@ -1,5 +1,5 @@
-/* global jQuery */
-(($) => {
+/* global jQuery, moment */
+(($, moment) => {
 	const authToken = localStorage.getItem('token');
 	
 	if (!authToken) {
@@ -35,17 +35,20 @@
 		constructor(data) {
 			this.root = document.getElementById('page-content');
 			this.versionContainer = document.getElementById('currentVersion');
-			this.id = data._id;
-			this.version = data.version;
-			this.created_at = data.created_at;
 			this.data = data;
 			this.updated = false;
-			this.updateVersion();
+			this.updateVersion(data.version, data.created_at);
 			this.render();
 			this.setEvents();
 		}
 
-		updateVersion() {
+		updateVersion(version, created) {
+			this.version = version;
+			this.created_at = moment(new Date(created.slice(1, -1))).format('L');
+			this.renderVersion();
+		}
+
+		renderVersion() {
 			this.versionContainer.innerHTML = 'Version: ' + this.version + ' | ' + this.created_at;
 		}
 
@@ -144,10 +147,8 @@
 						return display('Error', result.error);
 					}
 
-					this.version = result.data.version;
-					this.created_at = result.data.created_at;
+					this.updateVersion(result.data.version, result.data.created_at);
 					this.updated = false;
-					this.updateVersion();
 					display('Resultado', 'Los rangos han sido guardados con exito.');
 				})
 				.catch(error => display('Error', error));
@@ -193,4 +194,4 @@
 		});
 		
 	});
-})(jQuery);
+})(jQuery, moment);
