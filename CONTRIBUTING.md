@@ -13,7 +13,7 @@ Hacemos sprints cada dos semanas. Utilizamos Git Flow y esperamos gestionar los 
 En ocasiones, los viernes, nos reunimos a planificar con unas cervezas frias en Spotahome :-)
 
 ### Reportar un error
-Por favor, crea un [issue](https://github.com/OSWeekends/formula-uc3m/issues/new) donde especifiques lo siguiente:
+Por favor, crea un [issue](https://github.com/Formula-UC3M/telemetria-documentacion/issues/new) donde especifiques lo siguiente:
 - Resumen del problema (240-500 carácteres)
 - Pasos para reproducirlo (¿Qué tengo que hacer para generar ese error de nuevo?)
 - Comportamiento esperado (¿Qué debería de pasar si ese bug no existiera?)
