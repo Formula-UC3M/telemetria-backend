@@ -1,0 +1,27 @@
+doctype html
+html(lang='es')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		meta(name='description', content='Formulario de inicio de sessión.')
+		meta(name='author', content='Open Source Weekends')
+		title Iniciar Sesión - Telemetría FormulaUC3M - OSW
+		link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB", crossorigin="anonymous")
+		link(href='../resources/css/styles.css', rel='stylesheet')
+		script(src='../resources/js/login.js')
+	body
+		form#login.form-signin
+			.text-center.mb-4
+				h1.h3.mb-3.font-weight-normal Iniciar Sesión
+			.form-label-group
+				input#inputEmail.form-control(type='email', placeholder='Email address', required='', autofocus='', name="email")
+				label(for='inputEmail') Email
+			.form-label-group
+				input#inputPassword.form-control(type='password', placeholder='Contraseña', required='', name="password")
+				label(for='inputPassword') Contraseña
+			.checkbox.mb-3
+				label
+					input(type='checkbox', value='remember-me')
+					|  Recordarme
+			button.btn.btn-lg.btn-primary.btn-block(type='submit') Iniciar Sesión
+			p.mt-5.mb-3.text-muted.text-center © FormulaUC3M - Open Source Weekends 2018
