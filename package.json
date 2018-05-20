@@ -56,6 +56,7 @@
   "dependencies": {
     "bcrypt": "^2.0.1",
     "dotenv": "5.0.1",
+    "eslint-plugin-vue": "^4.5.0",
     "jade": "^1.11.0",
     "jwt-simple": "^0.5.1",
     "mongoose": "5.0.14",
