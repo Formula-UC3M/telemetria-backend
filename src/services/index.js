@@ -20,7 +20,7 @@ function decodeToken (token) {
 					message: 'El token ha expirado'
 				});
 			}
-			resolve(payload.sub)
+			resolve(payload.sub);
 		} catch (err) {
 			reject({
 				status: 500,
@@ -33,4 +33,4 @@ function decodeToken (token) {
 module.exports = {
 	createToken,
 	decodeToken
-}
+};
