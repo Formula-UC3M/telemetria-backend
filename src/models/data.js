@@ -57,7 +57,7 @@ const model = mongoose.model('Data', dataSquema);
 model.findByRange = function(from, to, callback) {
 	model
 		.find()
-		.where('timestanp')
+		.where('timestamp')
 			.gte(moment(from).unix())
 			.lte(moment(to).unix())
 		.exec(callback);

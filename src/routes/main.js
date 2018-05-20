@@ -9,7 +9,7 @@ const mainRoute = new Route(
 		method: 'GET',
 	},
 	gw => {
-		gw.file(paths.resolve(__dirname, '../../telemetria-frontend/public/index.html'));
+		gw.file(paths.resolve(__dirname, '../../public/index.html'));
 	}
 );
 
@@ -70,7 +70,7 @@ mainRoute.routes.add(new Route({
 	id: 'static-frontend',
 	path: '/*:path',
 	directory: {
-		path: paths.resolve(__dirname, '../../telemetria-frontend/public'),
+		path: paths.resolve(__dirname, '../../public'),
 		listing: true,
 	}
 }));
