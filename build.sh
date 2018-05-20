@@ -7,8 +7,6 @@ npm run test
 git clone -b dev --depth 1 https://github.com/Formula-UC3M/telemetria-frontend.git
 cd telemetria-frontend
 npm install
-npm run lint
-npm test
 npm run build
 [ -e dist ] && mv dist/ ../public/
 
