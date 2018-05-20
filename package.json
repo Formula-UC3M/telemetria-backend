@@ -54,7 +54,7 @@
   },
   "homepage": "https://github.com/Formula-UC3M/telemetria-backend/tree/master/#readme",
   "dependencies": {
-    "frontend": "https://github.com/Formula-UC3M/telemetria-frontend.git#dev",
+    "formula-uc3m-client": "git+https://github.com/Formula-UC3M/telemetria-frontend.git#dev",
     "bcrypt": "^2.0.1",
     "dotenv": "5.0.1",
     "eslint-plugin-vue": "^4.5.0",
