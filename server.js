@@ -6,6 +6,7 @@ const project = require('pillars');
 const mongoose = require('mongoose');
 const jade = require('jade');
 const moscaMQTTServer = require('./src/lib/mqtt/mosca');
+const faker = require('./src/lib/mqtt/faker');
 
 console.info('Añadiendo rutas');
 require('./src/routes');
@@ -49,5 +50,17 @@ moscaMQTTServer.on('ready', () => {
 				compileDebug: false
 			});
 		});
+
+		// Publicar fake data.
+		if (process.env.DATA_FAKER_ENABLED && parseInt(process.env.DATA_FAKER_ENABLED)) {
+			const addition = process.env.DATA_FAKER_ADDITION_PERCENTAGE || 2;
+			const interval = process.env.DATA_FAKER_INTERVAL_MS || 2;
+
+			console.info('Arrancando servicio de fake data para hacer pruebas.');
+			console.info(`Publicando datos cada ${ interval }ms con un incremento de ${ addition } por ciento.`);
+			faker(moscaMQTTServer, addition, interval);
+		} else {
+			console.info('Servicio de datos de prueba deshabilitado');
+		}
 	});
 });
