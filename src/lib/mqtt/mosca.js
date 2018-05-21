@@ -24,30 +24,25 @@ moscaMQTTServer.on('clientDisconnected', client => {
 });
 
 // Evento que se dispara cuando se publica un mensaje en la cola.
-moscaMQTTServer.on('published', (packet, client) => {
+moscaMQTTServer.on('published', (packet, client) => {	
 	if (!client) {
 		return;
 	}
 
-	if (packet.topic === 'formula/realtime-fake-data') {
+	if (packet.topic.startsWith('formula-fake-data')) {
 		return;
 	}
 
 	// Solo hacemos algo cuando se envia un mensaje al topic que a nosotros nos interesa.
 	if (!packet.topic.toLowerCase().startsWith('$sys')) {
-		console.log('Topic');
-		console.log(
-			`Cliente ${ client.id } publicando los datos: `,
-			packet.payload.toString()
-		);
+		const first = packet.topic.indexOf('/');
+		const route = packet.topic.substring(first + 1);
 
-		/*
 		try {
-			storeObj.save(packet.topic, packet.payload.value)
+			storeObj.save(route, packet.payload);
 		} catch(e) {
 			console.error('Error:' +  e.message);
 		}
-		*/
 	}
 });
 

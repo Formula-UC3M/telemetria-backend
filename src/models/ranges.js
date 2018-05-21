@@ -59,7 +59,7 @@ const RangesSchema = new Schema(
 		accelerometer: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
-		},
+		}
 	}, {timestamps: { createdAt: 'created_at', updatedAt: 'update_at' }}
 );
 
