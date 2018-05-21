@@ -43,8 +43,9 @@
 		}
 
 		updateVersion(version, created) {
+			created = created ? created.slice(1, -1) : Date.now();
 			this.version = version;
-			this.created_at = moment(new Date(created.slice(1, -1))).format('L');
+			this.created_at = moment(new Date(created)).format('L');
 			this.renderVersion();
 		}
 

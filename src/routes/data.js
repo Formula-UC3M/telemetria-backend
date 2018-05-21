@@ -45,7 +45,8 @@ dataRoute.routes.add(new Route(
 	},
 	gw => {
 		const last = gw.pathParams.path.lastIndexOf('/');
-		const route = gw.pathParams.path.substring(0, last);
+		const first = gw.pathParams.path.indexOf('/');
+		const route = gw.pathParams.path.substring(first + 1, last);
 		const value = gw.pathParams.path.substring(last + 1);
 
 		try {
