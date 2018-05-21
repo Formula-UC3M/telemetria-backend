@@ -1,5 +1,6 @@
 /* global Route */
 const paths = require('path');
+const client_folder = '../../node_modules/formula-uc3m-client';
 
 // Static Files and main route
 const mainRoute = new Route(
@@ -9,7 +10,7 @@ const mainRoute = new Route(
 		method: 'GET',
 	},
 	gw => {
-		gw.file(paths.resolve(__dirname, '../../public/index.html'));
+		gw.file(paths.resolve(__dirname, client_folder + '/dist/index.html'));
 	}
 );
 
@@ -70,7 +71,7 @@ mainRoute.routes.add(new Route({
 	id: 'static-frontend',
 	path: '/*:path',
 	directory: {
-		path: paths.resolve(__dirname, '../../public'),
+		path: paths.resolve(__dirname, client_folder + '/dist'),
 		listing: true,
 	}
 }));

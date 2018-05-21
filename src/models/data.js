@@ -7,7 +7,7 @@ const dataSquema = new Schema(
 		timestamp: { type: String, default: Date.now() },
 		ecu: {
 			water_temp_eng: { type: Number, default: null },
-			oil_temp_eng: { type: Number, default: null },
+			oil_tempEng: { type: Number, default: null },
 			rpm: { type: Number, default: null },
 		},
 		wfl: {
@@ -26,14 +26,15 @@ const dataSquema = new Schema(
 			brake_temperature: { type: Number, default: null },
 		},
 		wbr: {
+
 			//Wheel back right
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
 		},
 		radiator_temperature: {
-			_1: { type: Number, default: null },
-			_2: { type: Number, default: null },
-			_3: { type: Number, default: null },
+			sensor_1: { type: Number, default: null },
+			sensor_2: { type: Number, default: null },
+			sensor_3: { type: Number, default: null },
 		},
 		pitot: { type: Number, default: null },
 		direction: { type: Number, default: null },
@@ -41,12 +42,12 @@ const dataSquema = new Schema(
 		upleft_temperature: { type: Number, default: null },
 		throttle_position: { type: Number, default: null },
 		brake_position: { type: Number, default: null },
-		clutch:  { type: Boolean, default: null },
+		clutch: { type: Boolean, default: null },
 		speed: { type: Number, default: null },
 		accelerometer: {
-			_1: { type: Number, default: null },
-			_2: { type: Number, default: null },
-			_3: { type: Number, default: null },
+			sensor_1: { type: Number, default: null },
+			sensor_2: { type: Number, default: null },
+			sensor_3: { type: Number, default: null },
 		}
 	},
 	{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }}
