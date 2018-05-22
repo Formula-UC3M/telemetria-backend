@@ -96,7 +96,7 @@ function validateRanges(ranges) {
 	});
 }
 
-module.exports =  function(moscaMQTTServer, ranges, incrementPercentage, everyMs) {
+module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTime) {
 	function publish(route, value, callback) {
 		moscaMQTTServer.publish({
 			topic: 'formula-fake-data/' + route,
@@ -149,8 +149,8 @@ module.exports =  function(moscaMQTTServer, ranges, incrementPercentage, everyMs
 		}
 
 		routesByRange.forEach(element => {
-			// Cada conjunto de rutas publicadas cada everyMs +2 -3 +1... ms para variar un poco.
-			const every = everyMs + Math.random() * 10 - 5;
+			// Cada conjunto de rutas se publica cada baseIntervalTime +2 -3 +1... ms para variar un poco.
+			const every = baseIntervalTime + Math.random() * 10 - 5;
 			let range;
 	
 			if (element.range.startsWith('ecu')) {
