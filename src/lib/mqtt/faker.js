@@ -96,11 +96,11 @@ function validateRanges(ranges) {
 	});
 }
 
-module.exports =  function(moscaMQTTServer, ranges, incrementPercentage, everyMs) {
+module.exports =  function(moscaMQTTServer, incrementPercentage, everyMs) {
 	function publish(route, value, callback) {
 		moscaMQTTServer.publish({
 			topic: 'formula-fake-data/' + route,
-			payload: value,
+			payload: value.toString(),
 			qos: 1
 		}, null, callback);
 	}
@@ -112,13 +112,13 @@ module.exports =  function(moscaMQTTServer, ranges, incrementPercentage, everyMs
 
 		publish(route, current, () => {
 			setTimeout(() => publishInterval(
-				every,
+				everyMs,
 				route,
 				min,
 				max,
 				addition,
 				current + addition
-			), every);
+			), everyMs);
 		});
 	}
 
@@ -152,14 +152,14 @@ module.exports =  function(moscaMQTTServer, ranges, incrementPercentage, everyMs
 			// Cada conjunto de rutas publicadas cada everyMs +2 -3 +1... ms para variar un poco.
 			const every = everyMs + Math.random() * 10 - 5;
 			let range;
-	
+
 			if (element.range.startsWith('ecu')) {
 				const rangeKey = element.range.split('.')[1];
 				range = ranges.ecu[rangeKey];
 			} else {
 				range = ranges[element.range];
 			}
-	
+
 			const addition = (range.max - range.min) * incrementPercentage / 100;
 			element.routes.forEach(route => publishInterval(
 				every,
@@ -170,7 +170,7 @@ module.exports =  function(moscaMQTTServer, ranges, incrementPercentage, everyMs
 				range.min
 			));
 		});
-	
+
 		// Publicar cambios en clutch cada entre 2 y 8 segundos.
 		publishBooleanInterval('clutch', 1, 5000);
 	});
