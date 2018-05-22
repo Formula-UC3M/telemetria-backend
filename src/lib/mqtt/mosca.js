@@ -24,7 +24,7 @@ moscaMQTTServer.on('clientDisconnected', client => {
 });
 
 // Evento que se dispara cuando se publica un mensaje en la cola.
-moscaMQTTServer.on('published', (packet, client) => {	
+moscaMQTTServer.on('published', (packet, client) => {
 	if (!client) {
 		return;
 	}
