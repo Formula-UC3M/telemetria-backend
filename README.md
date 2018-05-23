@@ -57,6 +57,21 @@ npm install
 
 Una vez realizado esto ya deberían estar instaladas todas las dependencias de este paquete. Ahora debes copiar el fichero `.env.example` y crear un fichero `.env`, dentro debes sustituir la configuración de ejemplo por la de tu base de datos.
 
+##### Configuración del `.env`:
+
+*  **MONGODB_URI**: Url de conexión a mongo db.
+*  **HOST**: Host del servidor web.
+*  **WEB_PORT**: Puerto del servidor web.
+*  **MQTT_PORT**: Puerto del servidor de datos con mosca y mqtt.
+*  **DEBUG_MODE**: 1 o 0. Indica si la aplicación está en modo debug o no.
+*  **RESOLUTION**: Se utiliza para guardar datos, se agrupan todos los datos recibidos en el rango de tiempo (en milisegundos) especificado en este parámetro. De esta forma si aquí pusieramos 1000 (1s) aunque el coche estuviese enviando datos cada 5 milisegundos se iría actualizando el valor de ese sensor en un objeto y pasado el segundo guardaría todo. Este valor debe estar entre los 10 y los 50 milisegundos.
+*  **JWT_SECRET_TOKEN**: Palabra secreta utilizada para generar los tokens de autentificación. (Para cambiar los rangos de los sensores, por ejemplo).
+*  **JWT_TOKEN_EXP_DAYS**: Días que tarda un token de autentificación en expirar.
+*  **CREATE_USERS_SECRET_WORD**: Esta "contraseña" o secreto se usa para crear usuarios `/signup`. Para crear usuarios te pide un campo "Secret" que sería como una contraseña o palabra clave que escribes aquí. Hace que solo aquel que conozca esta contraseña pueda crear usuarios.
+*  **DATA_FAKER_ENABLED**: 1 o 0. Activar el generador de datos fake o no.
+*  **DATA_FAKER_ADDITION_PERCENTAGE**: Porcentaje de incremento del valor publicado por el faker. Cada vez que se publica un valor de un sensor se esperan unos milisegundos y se vuelve a publicar otro valor, que es el valor anterior sumado a un valor de aumento. Este valor de aumento se calcula como un porcentaje (el aquí definido) sobre el rango de valores.
+*  **DATA_FAKER_INTERVAL_MS**: Tiempo medio entre publicar un valor y el siguiente en el faker de datos.
+
 Una ver realizado esto ya estaría completamente instalado y listo para arrancar (recuerda arrancar el servidor de base de datos antes de arrancar este servidor).
 
 **¡Importante! Antes de iniciar el servidor**
