@@ -29,10 +29,6 @@ moscaMQTTServer.on('published', (packet, client) => {
 		return;
 	}
 
-	if (packet.topic.startsWith('formula-fake-data')) {
-		return;
-	}
-
 	// Solo hacemos algo cuando se envia un mensaje al topic que a nosotros nos interesa.
 	if (!packet.topic.toLowerCase().startsWith('$sys')) {
 		const first = packet.topic.indexOf('/');
