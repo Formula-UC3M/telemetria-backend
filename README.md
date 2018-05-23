@@ -108,10 +108,10 @@ De la creación y gestión del servidor de datos en tiempo real se encargará el
 - [Javier Gallego (@bifuer)](https://github.com/bifuer) Lider
 - [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) Lider
 - [Óliver BM(@umowis)](https://github.com/umowis) Contributor
-- [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) (contributor) Pruebas de conexión Arduino <> Servidor
-- [Alfredo de la Calle(@bytelovers)](https://github.com/bytelovers) (contributor) Script build que trae el front y lo monta.
-- [Ulises Gascón(@UlisesGascon)](https://github.com/UlisesGascon) (contributor) Migración a nuevo repositorio y consultoría técnica.
-- Todas las personas que se quieran unir al equipo que envien un PR con su info sustituyendo este mensage :P
+- [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) Contributor  Pruebas de conexión Arduino <> Servidor
+- [Alfredo de la Calle(@bytelovers)](https://github.com/bytelovers) Contributor  Script build que trae el front y lo monta.
+- [Ulises Gascón(@UlisesGascon)](https://github.com/UlisesGascon) Contributor  Migración a nuevo repositorio y consultoría técnica.
+- [Bryan McEire (@mceire)](https://github.com/mceire) Contributor  Dockerización del proyecto :D!
 
 ## Contribuir
 Puedes contribuir al apartado de backend, dentro del proyecto de Formula UC3M, leyendo las [issues con la etiqueta back](https://github.com/Formula-UC3M/telemetria-documentacion/issues?q=is%3Aissue+is%3Aopen+label%3ABack). Toda la documentación issues y roadmap se encuentran en el proyecto [Telemetria Documentación](https://github.com/Formula-UC3M/telemetria-documentacion).
