@@ -78,9 +78,9 @@ const routesByRange = [
 /**
  * Comprueba si los rangos tienen todos un mínimo y un máximo y a su vez el ese mínimo no
  * es mayor que el máximo.
- * 
+ *
  * @param {object} ranges Última versión de los rangos de valores válidos de los sensores.
- * @returns {boolean} Validos o no. 
+ * @returns {boolean} Validos o no.
  */
 function validateRanges(ranges) {
 	return routesByRange.every(element => {
@@ -110,25 +110,25 @@ function validateRanges(ranges) {
  * otra vez desde el mínimo. Aunque se toma baseIntervalTime como referencia los valores
  * de cada ruta se publican con un poco de espacio entre ellas de tal forma que sea más
  * realista.
- * 
- * Nota: Para poder usar el faker de datos, debes configurarlo en tu archivo .env, mira
+ *
+ * NOTA: Para poder usar el faker de datos, debes configurarlo en tu archivo .env, mira
  * cómo está en .env.example para tener una referencia.
- * 
- * Nota2: La aplicación debe de tener los rangos de los sensores configurados para que
+ *
+ * NOTA 2: La aplicación debe de tener los rangos de los sensores configurados para que
  * el faker funcione.
- * 
- * @param {object} moscaMQTTServer Instancia de un servidor de mosca. 
+ *
+ * @param {object} moscaMQTTServer Instancia de un servidor de mosca.
  * @param {int} incrementPercentage Porcentaje de aumento del valor por iteración.
  * @param {int} baseIntervalTime Tiempo medio entre publicado de valores.
  * @returns {void} Nada.
  */
 module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTime) {
-  
+
 	/**
 	 * Publica un valor en una ruta (topic).
-	 * 
+	 *
 	 * @param {string} route Ruta (parte del topic) dónde publicar datos.
-	 * @param {float | int | string} value Valor a publicar. 
+	 * @param {float | int | string} value Valor a publicar.
 	 * @param {function} callback Función llamada cuando se termina de publicar el dato.
 	 * @return {void} Nada.
 	 */
@@ -146,8 +146,8 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 	 * Cada vez que se publica el valor actual (parametro current) aumenta lo mismo que
 	 * lo que vale "addition". Una vez llamada esta función recursiva no tiene condición
 	 * de salida, publica datos data x milisegundos en la ruta indefinidamente.
-	 * 
-	 * @param {int} every Publicar cada x milisegundos. 
+	 *
+	 * @param {int} every Publicar cada x milisegundos.
 	 * @param {string} route Ruta (parte del topic) dónde publicar datos.
 	 * @param {float} min Valor mínimo del rango del sensor en esta ruta.
 	 * @param {float} max Valor máximo del rango del sensor en esta ruta.
@@ -163,27 +163,27 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 
 		publish(route, current, () => {
 			setTimeout(() => publishInterval(
-				everyMs,
+				every,
 				route,
 				min,
 				max,
 				addition,
 				current + addition
-			), everyMs);
+			), every);
 		});
 	}
 
 	/**
 	 * Publica un valor booleano (cambia cada vez que se publica) cada every milisegundos.
-	 * 
-	 * @param {int} every Publicar cada x milisegundos. 
+	 *
+	 * @param {int} every Publicar cada x milisegundos.
 	 * @param {string} route Ruta (parte del topic) dónde publicar datos.
 	 * @param {boolean} value Valor booleano 1 o 0.
 	 * @return {void} Nada
 	 */
 	function publishBooleanInterval(every, route, value) {
 		setTimeout(() => {
-			publish(route, value, () => publishBooleanInterval(route, value === 1 ? 0 : 1, every));
+			publish(route, value, () => publishBooleanInterval(every, route, value === 1 ? 0 : 1));
 		}, every + (Math.random() * 3000 * (value ? 1 : -1)));
 	}
 
