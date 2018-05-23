@@ -123,6 +123,7 @@ function validateRanges(ranges) {
  * @returns {void} Nada.
  */
 module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTime) {
+  
 	/**
 	 * Publica un valor en una ruta (topic).
 	 * 
@@ -162,13 +163,13 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 
 		publish(route, current, () => {
 			setTimeout(() => publishInterval(
-				every,
+				everyMs,
 				route,
 				min,
 				max,
 				addition,
 				current + addition
-			), every);
+			), everyMs);
 		});
 	}
 
