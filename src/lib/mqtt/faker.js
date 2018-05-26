@@ -194,14 +194,14 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 		}
 
 		if (!ranges) {
-			return console.error(`
+			throw new Error(`
 				Para poder generar datos de prueba necesitas configurar los rangos de los
 				sensores. Puedes hacerlo en /ranges.
 			`);
 		}
 
 		if (!validateRanges(ranges)) {
-			return console.error(`
+			throw new Error(`
 				Hay rangos sin configurar todavía. Para poder generar los datos de prueba
 				han de estar todos los rangos configurados.
 			`);

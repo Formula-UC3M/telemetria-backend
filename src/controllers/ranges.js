@@ -1,7 +1,7 @@
 const RangesModel = require('../models/ranges');
 
 function errorHandler(gw, error) {
-	return error && gw.error(500, Error(error));
+	return error && gw.errorAsJson(500, error);
 }
 
 function parseDocument(data) {
@@ -17,7 +17,10 @@ function get(gw) {
 			errorHandler(gw, err);
 	
 			if (!ranges) {
-				return gw.error(500, Error('La versión de rangos que intentas obtener no existe en la base de datos.'));
+				return gw.errorAsJson(
+					500,
+					'La versión de rangos que intentas obtener no existe en la base de datos.'
+				);
 			}
 	
 			gw.json(parseDocument(ranges), { deep: 0 });
@@ -61,35 +64,26 @@ function getBetweenDates(gw) {
 		});
 	} else {
 		if (!gw.params.from) {
-			return gw.error(500, Error('Missing \'from\' date in get ranges versions between dates..'));
+			return gw.errorAsJson(500, 'Missing \'from\' date in get ranges versions between dates..');
 		}
 
 		if (!gw.params.to) {
-			return gw.error(500, Error('Missing \'to\' date in get ranges versions between dates..'));
+			return gw.c(500, 'Missing \'to\' date in get ranges versions between dates..');
 		}
 	}
 }
 
 function create(gw) {
 	if (!gw.content.params || !Object.keys(gw.content.params).length) {
-		return gw.json({
-			code: 400,
-			error: 'Error guardando rangos. No se han mandado datos para guardar.'
-		});
+		return gw.errorAsJson(400, 'Error guardando rangos. No se han mandado datos para guardar.');
 	}
 
 	RangesModel.create(gw.content.params, (err, data) => {
 		if (err) {
-			return gw.json({
-				code: 500,
-				error: 'Error guardando rangos. Mensaje: ' + err
-			});
+			return gw.errorAsJson(500, 'Error guardando rangos. Mensaje: ' + err);
 		}
 
-		return gw.json({
-			code: 200,
-			data: parseDocument(data)
-		});
+		return gw.json({ data: parseDocument(data) });
 	});
 }
 
