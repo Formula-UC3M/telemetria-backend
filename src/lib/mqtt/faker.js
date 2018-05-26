@@ -163,13 +163,13 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 
 		publish(route, current, () => {
 			setTimeout(() => publishInterval(
-				everyMs,
+				every,
 				route,
 				min,
 				max,
 				addition,
 				current + addition
-			), everyMs);
+			), every);
 		});
 	}
 
