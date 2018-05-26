@@ -1,6 +1,6 @@
 {
   "name": "formula-uc3m-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Servidor para el proyecto formula-uc3m con guardado y explotación de datos en tiempo real.",
   "main": "server.js",
   "scripts": {
