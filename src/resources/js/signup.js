@@ -1,4 +1,4 @@
-(() => {
+(responseManager => {
 	document.addEventListener('DOMContentLoaded', event => {
 		const formSignUp = document.getElementById('signup');
 
@@ -9,11 +9,11 @@
 				method: 'POST',
 				body: new FormData(formSignUp)
 			})
-			.then(res => res.json())
+			.then(responseManager)
 			.then(data => {
 				window.location.href = '/login';
 			})
 			.catch(error => alert(error));
 		});
 	});
-})();
+})(window.responseManager);

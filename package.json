@@ -1,6 +1,6 @@
 {
   "name": "formula-uc3m-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Servidor para el proyecto formula-uc3m con guardado y explotación de datos en tiempo real.",
   "main": "server.js",
   "scripts": {
@@ -57,7 +57,6 @@
     "formula-uc3m-client": "git+https://github.com/Formula-UC3M/telemetria-frontend.git#dev",
     "bcrypt": "^2.0.1",
     "dotenv": "5.0.1",
-    "eslint-plugin-vue": "^4.5.0",
     "jade": "^1.11.0",
     "jwt-simple": "^0.5.1",
     "mongoose": "5.0.14",
@@ -71,7 +70,6 @@
     "gulp": "3.9.1",
     "gulp-debug": "3.0.0",
     "gulp-eslint": "3.0.1",
-    "gulp-inject-partials": "1.0.4",
     "gulp-istanbul": "1.1.1",
     "gulp-jsdoc3": "1.0.1",
     "gulp-mocha": "3.0.1",
