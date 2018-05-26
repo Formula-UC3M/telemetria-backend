@@ -17,6 +17,6 @@ module.exports = function(gw, next) {
 	services.decodeToken(token).then(response => {
 		next();
 	}).catch(error => {
-		gw.error(error.status, Error(error.message));
+		gw.errorAsJson(error.status, error.message);
 	});
 };

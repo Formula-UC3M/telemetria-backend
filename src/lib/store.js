@@ -1,6 +1,6 @@
 const DataModel = require('../models/data');
 
-/**
+/*
  * Saves data in database every X miliseconds while something gets saved. Store the
  * data until .env.RESOLUTION miliseconds then save the model in the mongo database.
  */
