@@ -1,4 +1,4 @@
-(() => {
+(responseManager => {
 	if (localStorage.getItem('token')) {
 		return window.location.href = '/ranges';
 	}
@@ -13,7 +13,7 @@
 				method: 'POST',
 				body: new FormData(formLognin)
 			})
-			.then(res => res.json())
+			.then(responseManager)
 			.then(data => {
 				localStorage.setItem('token', data.token);
 				window.location.href = '/ranges';
@@ -21,4 +21,4 @@
 			.catch(error => alert(error));
 		});
 	});
-})();
+})(window.responseManager);

@@ -1,5 +1,5 @@
 /* global jQuery, moment */
-(($, moment) => {
+(($, moment, responseManager) => {
 	const authToken = localStorage.getItem('token');
 	
 	if (!authToken) {
@@ -142,12 +142,8 @@
 					}),
 					body: bodyData
 				})
-				.then(res => res.json())
+				.then(responseManager)
 				.then(result => {
-					if (result.code >= 300) {
-						return display('Error', result.error);
-					}
-
 					this.updateVersion(result.data.version, result.data.created_at);
 					this.updated = false;
 					display('Resultado', 'Los rangos han sido guardados con exito.');
@@ -186,7 +182,7 @@
 				'Authorization': 'Bearer ' + authToken
 			}) 
 		})
-		.then(res => res.json())
+		.then(responseManager)
 		.then(data => {
 			new TableForm(data);
 		})
@@ -195,4 +191,4 @@
 		});
 		
 	});
-})(jQuery, moment);
+})(jQuery, moment, window.responseManager);

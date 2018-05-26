@@ -27,7 +27,7 @@ const dataRoute = new Route(
 		} else {
 			dataModel.findByRange(gw.params.from, gw.params.to, (err, data) => {
 				if (err) {
-					gw.error(500, Error(err));
+					gw.errorAsJson(500, err);
 				}
 
 				gw.json(data, {deep: 0});
@@ -54,7 +54,7 @@ dataRoute.routes.add(new Route(
 			gw.json({ route, value });
 		} catch(e) {
 			console.error('Error:' +  e.message);
-			gw.error(400, e.message);
+			gw.errorAsJson(400, e.message);
 		}
 	}
 ));
