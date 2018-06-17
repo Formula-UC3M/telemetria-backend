@@ -9,7 +9,8 @@ const settings = {
 		type: 'mongo',
 		url: process.env.MONGODB_URI,
 		pubsubCollection: 'formula_rt',
-		mongo: {}
+		mongo: {},
+		logger: { level: 'debug'}
 	}
 };
 
@@ -25,6 +26,7 @@ moscaMQTTServer.on('clientDisconnected', client => {
 
 // Evento que se dispara cuando se publica un mensaje en la cola.
 moscaMQTTServer.on('published', (packet, client) => {
+
 	if (!client) {
 		return;
 	}
@@ -35,6 +37,7 @@ moscaMQTTServer.on('published', (packet, client) => {
 		const route = packet.topic.substring(first + 1);
 
 		try {
+			console.log(`El cliente [${client.id}] publica en topic [${route}] : [${packet.payload}]`);
 			storeObj.save(route, packet.payload);
 		} catch(e) {
 			console.error('Error:' +  e.message);
