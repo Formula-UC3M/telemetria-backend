@@ -38,7 +38,11 @@ const dataSquema = new Schema(
 		},
 		pitot: { type: Number, default: null },
 		direction: { type: Number, default: null },
-		upright_temperature: { type: Number, default: null },
+		upright_temperature: { 
+			sensor_1: { type: Number, default: null },
+			sensor_2: { type: Number, default: null },
+			sensor_3: { type: Number, default: null }
+		},
 		upleft_temperature: { type: Number, default: null },
 		throttle_position: { type: Number, default: null },
 		brake_position: { type: Number, default: null },

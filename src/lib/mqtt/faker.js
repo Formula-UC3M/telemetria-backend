@@ -51,7 +51,11 @@ const routesByRange = [
 	},
 	{
 		range: 'uprightTemperature',
-		routes: ['upright_temperature']
+		routes: [
+			'upright_temperature/sensor_1',
+			'upright_temperature/sensor_2',
+			'upright_temperature/sensor_3'
+		]
 	},
 	{
 		range: 'throttlePosition',
