@@ -7,7 +7,9 @@
     "build": "chmod +x ./build.sh && ./build.sh",
     "start": "node server.js",
     "test": "gulp test",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "readme": "README.md",
   "repository": {
@@ -61,8 +63,9 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "5.0.14",
     "mongoose-auto-increment": "^5.0.1",
-    "mosca": "2.8.1",
-    "pillars": "0.6.4"
+    "mosca": "2.8.2",
+    "pillars": "0.6.4",
+    "snyk": "^1.110.2"
   },
   "devDependencies": {
     "chai": "3.5.0",
@@ -78,5 +81,6 @@
     "mocha-sinon": "1.1.6",
     "path": "0.12.7",
     "sinon": "1.17.7"
-  }
+  },
+  "snyk": true
 }
