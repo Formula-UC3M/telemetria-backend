@@ -36,22 +36,18 @@ const routesByRange = [
 	{
 		range: 'radiatorTemperature',
 		routes: [
-			'radiator_temperature/sensor_1',
-			'radiator_temperature/sensor_2',
-			'radiator_temperature/sensor_3',
+			'radiator_temperature/sensor_in',
+			'radiator_temperature/sensor_middle',
+			'radiator_temperature/sensor_out',
+			'radiator_temperature/sensor_t'
 		]
 	},
 	{
-		range: 'pitot',
-		routes: ['pitot']
-	},
-	{
-		range: 'direction',
-		routes: ['direction']
-	},
-	{
 		range: 'uprightTemperature',
-		routes: ['upright_temperature']
+		routes: [
+			'wbl/upright_temperature',
+			'wbr/upright_temperature'
+		]
 	},
 	{
 		range: 'throttlePosition',
@@ -64,15 +60,7 @@ const routesByRange = [
 	{
 		range: 'speed',
 		routes: ['speed']
-	},
-	{
-		range: 'accelerometer',
-		routes:  [
-			'accelerometer/sensor_1',
-			'accelerometer/sensor_2',
-			'accelerometer/sensor_3',
-		]
-	},
+	}
 ];
 
 /**
@@ -90,9 +78,14 @@ function validateRanges(ranges) {
 			range = ranges.ecu[element.range.split('.')[1]];
 		}
 
+		// Old ranges no longer in use.
+		if (!range) {
+			return true;
+		}
+
 		const valid = range.min !== undefined && range.max !== undefined;
 
-		if (valid && range.min > range.max) {
+		if (range.min > range.max) {
 			throw Error(`
 				El rango máximo en el elemento ${ element.range }, no puede ser mayor
 				que el rango mínimo.
@@ -115,7 +108,9 @@ function validateRanges(ranges) {
  * cómo está en .env.example para tener una referencia.
  *
  * NOTA 2: La aplicación debe de tener los rangos de los sensores configurados para que
- * el faker funcione.
+ * el faker funcione. Actualización: Ahora mismo usa rangos por defecto en caso de no
+ * tenerlos configurados pero es recomendable ajustarlos a los que necesitemos para las
+ * pruebas.
  *
  * @param {object} moscaMQTTServer Instancia de un servidor de mosca.
  * @param {int} incrementPercentage Porcentaje de aumento del valor por iteración.
@@ -141,7 +136,7 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 	}
 
 	/**
-	 * Publica datos de forma periódica (cada every milisegundos) en la routa que se
+	 * Publica datos de forma periódica (cada every milisegundos) en la ruta que se
 	 * especifique, va subiendo el valor publicado entre min y max (y vuelve a empezar).
 	 * Cada vez que se publica el valor actual (parametro current) aumenta lo mismo que
 	 * lo que vale "addition". Una vez llamada esta función recursiva no tiene condición
@@ -217,6 +212,11 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 				range = ranges.ecu[rangeKey];
 			} else {
 				range = ranges[element.range];
+			}
+
+			// Old ranges no longer in use.
+			if (!range) {
+				return true;
 			}
 
 			const addition = (range.max - range.min) * incrementPercentage / 100;

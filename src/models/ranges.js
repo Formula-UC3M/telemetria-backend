@@ -32,14 +32,6 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		pitot: {
-			min: { type: Number, default: 0 },
-			max: { type: Number, default: null },
-		},
-		direction: {
-			min: { type: Number, default: 0 },
-			max: { type: Number, default: null },
-		},
 		uprightTemperature: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
@@ -48,20 +40,54 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
-		brakePosition: {
-			min: { type: Number, default: 0 },
-			max: { type: Number, default: null },
-		},
 		speed: {
-			min: { type: Number, default: 0 },
-			max: { type: Number, default: null },
-		},
-		accelerometer: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		}
 	}, {timestamps: { createdAt: 'created_at', updatedAt: 'update_at' }}
 );
+
+const defaultRanges = {
+	version: 0,
+	ecu: {
+		waterTempEng: {
+			min:  0,
+			max: 100
+		},
+		oilTempEng:{
+			min:  0,
+			max: 100
+		},
+		rpm: {
+			min:  0,
+			max: 10000
+		}
+	},
+	suspension: {
+		min:  0,
+		max: 100
+	},
+	brakeTemperature: {
+		min:  0,
+		max: 100
+	},
+	radiatorTemperature: {
+		min:  0,
+		max: 100
+	},
+	uprightTemperature: {
+		min:  0,
+		max: 100
+	},
+	throttlePosition: {
+		min:  0,
+		max: 100
+	},
+	speed: {
+		min:  0,
+		max: 300
+	}
+};
 
 // Añadir auto incremento de versión.
 autoIncrement.initialize(mongoose.connection);
@@ -76,14 +102,25 @@ RangesSchema.plugin(autoIncrement.plugin, {
 const model = mongoose.model('Ranges', RangesSchema);
 
 /**
- * Devuelve la última versión guardada de rangos.
+ * Devuelve la última versión guardada de rangos. Si no hubiese ninguna manda la versión
+ * por defecto.
  * 
  * @param {function} callback Toma dos parametros, el error (si hubiere, si no null) y el
  * 							  resultado.
  * @returns {void} Nada.
  */
 model.getLast = function(callback) {
-	model.findOne().sort('-version').exec(callback);
+	model.findOne().sort('-version').exec((err, ranges) => {
+		// Si hay error llamar directamente all callback.
+		err && callback(err, ranges);
+
+		// Si no se han configurado rangos manda valores por defecto.
+		if (!ranges) {
+			return callback(null, defaultRanges);
+		}
+
+		callback(null, ranges);
+	});
 };
 
 /**

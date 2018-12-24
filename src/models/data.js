@@ -24,31 +24,24 @@ const dataSquema = new Schema(
 			//Wheel back left
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
+			upright_temperature: { type: Number, default: null }
 		},
 		wbr: {
 
 			//Wheel back right
 			suspension: { type: Number, default: null },
 			brake_temperature: { type: Number, default: null },
+			upright_temperature: { type: Number, default: null }
 		},
 		radiator_temperature: {
-			sensor_1: { type: Number, default: null },
-			sensor_2: { type: Number, default: null },
-			sensor_3: { type: Number, default: null },
+			sensor_in: { type: Number, default: null },
+			sensor_middle: { type: Number, default: null },
+			sensor_out: { type: Number, default: null },
+			sensor_t: { type: Number, default: null }
 		},
-		pitot: { type: Number, default: null },
-		direction: { type: Number, default: null },
-		upright_temperature: { type: Number, default: null },
-		upleft_temperature: { type: Number, default: null },
 		throttle_position: { type: Number, default: null },
 		brake_position: { type: Number, default: null },
-		clutch: { type: Boolean, default: null },
-		speed: { type: Number, default: null },
-		accelerometer: {
-			sensor_1: { type: Number, default: null },
-			sensor_2: { type: Number, default: null },
-			sensor_3: { type: Number, default: null },
-		}
+		speed: { type: Number, default: null }
 	},
 	{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }}
 );
