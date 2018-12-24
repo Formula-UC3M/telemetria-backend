@@ -1,5 +1,6 @@
 const mosca = require('mosca');
 const store = require("../store");
+const storeObj = new store().init();
 
 // Configurar mosca conectado a mongodb
 const settings = {
@@ -29,30 +30,26 @@ moscaMQTTServer.on('published', (packet, client) => {
 	}
 
 	// Solo hacemos algo cuando se envia un mensaje al topic que a nosotros nos interesa.
-	if (packet.topic === 'formula/realtime-data') {
-		console.log(
-			`Cliente ${ client.id } publicando los datos: `,
-			packet.payload.toString()
-		);
-	} else if (packet.topic === 'data') {
-		store.save(client.id, packet.payload);
-	} else if (!packet.topic.toLowerCase().startsWith('$sys')) {
-		console.log(
-			'Cliente "' + client.id + '" publicando datos en el topic ' +
-			'"' + packet.topic + '". Recuerda que el servidor mqqt trabaja con los mensajes ' +
-			'del topic "formula/realtime-data"'
-		);
+	if (!packet.topic.toLowerCase().startsWith('$sys')) {
+		const first = packet.topic.indexOf('/');
+		const route = packet.topic.substring(first + 1);
+
+		try {
+			storeObj.save(route, packet.payload);
+		} catch(e) {
+			console.error('Error:' +  e.message);
+		}
 	}
 });
 
 // Evento que se dispara cuando un cliente se suscribe a un "topic"
 moscaMQTTServer.on('subscribed', (topic, client) => {
-	console.log(`Cliente ${ client && client.id } subscrito al topic ${ topic }`);
+	console.log(`Cliente ${ client && client.id } suscrito al topic ${ topic }`);
 });
 
 // Evento que se dispara cuando un cliente se desuscribe.
 moscaMQTTServer.on('unsubscribed', (topic, client) => {
-	console.log(`Cliente ${ client && client.id } desubscrito del topic ${ topic }`);
+	console.log(`Cliente ${ client && client.id } desuscrito del topic ${ topic }`);
 });
 
 module.exports = moscaMQTTServer;
