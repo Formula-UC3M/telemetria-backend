@@ -41,52 +41,19 @@ Esperamos que a los que leáis estas líneas os haya cautivado la idea y os uná
 - [**Pillars**](http://pillarsjs.com/): Framework de desarrollo web para Node.js.
 
 ## Instalación
-
-Primero clona este repositorio:
-
-```shell
-git clone git@github.com:OSWeekends/formula-uc3m.git
-```
-
-Es necesario recordar que debes de tener instalado en tu ordenador MongoDB, Node JS y NPM (Gestor de paquetes de Node JS) antes de empezar a instalar este proyecto.
-Una vez clonado puedes entrar a la carpeta `./server` y ejecutar el siguiente comando:
-
-```shell
-npm install
-```
-
-Una vez realizado esto ya deberían estar instaladas todas las dependencias de este paquete. Ahora debes copiar el fichero `.env.example` y crear un fichero `.env`, dentro debes sustituir la configuración de ejemplo por la de tu base de datos.
-
-Una ver realizado esto ya estaría completamente instalado y listo para arrancar (recuerda arrancar el servidor de base de datos antes de arrancar este servidor).
-
-**Cómo iniciar el servidor**
-
-```sh
-npm start
-```
-Abre la url http://localhost:3001/ (Siendo localhost y 3001 el host y el port que asignaste en el archivo .env).
-
-**Cómo comprobar los test**
-
-```sh
-npm test
-```
-
-**Cómo comprobar que el código cumple la especificación del [linter](https://eslint.org/docs/about/)**
-
-```sh
-npm run lint
-```
+En nuestra wiki tienes toda la info necesaria para poder instalar el servidor. [Link a la wiki](https://github.com/Formula-UC3M/telemetria-backend/wiki/Instalaci%C3%B3n)
 
 ## Equipo
 
 De la creación y gestión del servidor de datos en tiempo real se encargará el equipo ArduData.
 
-- [Javier Gallego (@bifuer)](https://github.com/bifuer) (lider) Fullstack
-- [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) (lider) Fullstack
-- [Óliver BM(@umowis)](https://github.com/umowis) (contributor) Fullstack
-- [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) (contributor) Pruebas de conexión Arduino <> Servidor
-- Todas las personas que se quieran unir al equipo que envien un PR con su info sustituyendo este mensage :P
+- [Javier Gallego (@bifuer)](https://github.com/bifuer) Lider
+- [Sebastián Cabanas (@Sediug)](https://github.com/Sediug) Lider
+- [Óliver BM(@umowis)](https://github.com/umowis) Contributor
+- [Rubén Moreno (@rubenmoreno94)](https://github.com/rubenmoreno94) Contributor  Pruebas de conexión Arduino <> Servidor
+- [Alfredo de la Calle(@bytelovers)](https://github.com/bytelovers) Contributor  Script build que trae el front y lo monta.
+- [Ulises Gascón(@UlisesGascon)](https://github.com/UlisesGascon) Contributor  Migración a nuevo repositorio y consultoría técnica.
+- [Bryan McEire (@mceire)](https://github.com/mceire) Contributor  Dockerización del proyecto :D!
 
 ## Contribuir
 Puedes contribuir al apartado de backend, dentro del proyecto de Formula UC3M, leyendo las [issues con la etiqueta back](https://github.com/Formula-UC3M/telemetria-documentacion/issues?q=is%3Aissue+is%3Aopen+label%3ABack). Toda la documentación issues y roadmap se encuentran en el proyecto [Telemetria Documentación](https://github.com/Formula-UC3M/telemetria-documentacion).
