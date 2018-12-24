@@ -13,14 +13,14 @@
 	];
 
 	const fields = [
-		{ label: 'Acelerometro', slug: 'accelerometer' },
-		{ label: 'Posición Freno', slug: 'brakePosition' },
+		// { label: 'Acelerometro', slug: 'accelerometer' },
+		// { label: 'Posición Freno', slug: 'brakePosition' },
 		{ label: 'Temperatura Freno', slug: 'brakeTemperature' },
-		{ label: 'Dirección', slug: 'direction' },
+		// { label: 'Dirección', slug: 'direction' },
 		{ label: 'Suspensión', slug: 'suspension' },
 		{ label: 'Temperatura del radiador', slug: 'radiatorTemperature' },
 		{ label: 'Velocidad', slug: 'speed' },
-		{ label: 'Valvula de Pitot', slug: 'pitot' },
+		// { label: 'Valvula de Pitot', slug: 'pitot' },
 		{ label: 'Posición Acelerador', slug: 'throttlePosition' },
 		{ label: 'Temperatura manguetas', slug: 'uprightTemperature' }
 	];

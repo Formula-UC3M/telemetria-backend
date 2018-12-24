@@ -44,12 +44,12 @@ moscaMQTTServer.on('published', (packet, client) => {
 
 // Evento que se dispara cuando un cliente se suscribe a un "topic"
 moscaMQTTServer.on('subscribed', (topic, client) => {
-	console.log(`Cliente ${ client && client.id } subscrito al topic ${ topic }`);
+	console.log(`Cliente ${ client && client.id } suscrito al topic ${ topic }`);
 });
 
 // Evento que se dispara cuando un cliente se desuscribe.
 moscaMQTTServer.on('unsubscribed', (topic, client) => {
-	console.log(`Cliente ${ client && client.id } desubscrito del topic ${ topic }`);
+	console.log(`Cliente ${ client && client.id } desuscrito del topic ${ topic }`);
 });
 
 module.exports = moscaMQTTServer;
