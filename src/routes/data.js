@@ -1,6 +1,7 @@
 /* global Route */
 const dataModel = require('../models/data');
 const dataToCsv = require('../lib/dataToCsv');
+const dataToCsvLegacy = require('../lib/dataToCsvLegacy');
 const moment = require('moment');
 
 const dataRoute = new Route(
@@ -85,6 +86,28 @@ dataRoute.routes.add(new Route(
 			}
 
 			gw.send(dataToCsv(data), 'text/csv');
+		});
+	}
+));
+
+dataRoute.routes.add(new Route(
+	{
+		id: 'csv-data',
+		path: '/csv-legacy',
+		method: ['GET', 'POST'],
+		useAuth: true
+	},
+	gw => {
+		const now = moment(new Date()).format('D-M-YYYY hh:mm:ss');
+		gw.setHeader('Content-disposition', `attachment; filename=formula-data-${ now }.csv`);
+		gw.setHeader('Content-Type', 'text/csv');
+
+		dataModel.find().exec((err, data) => {
+			if (err) {
+				gw.errorAsJson(500, err);
+			}
+
+			gw.send(dataToCsvLegacy(data), 'text/csv');
 		});
 	}
 ));
