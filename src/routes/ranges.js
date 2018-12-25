@@ -22,8 +22,7 @@ ranges.routes.add(new Route(
 	{
 		id: 'ranges-all',
 		path: '/all',
-		method: 'GET',
-		useAuth: true
+		method: 'GET'
 	},
 	rangesController.getAll
 ));
@@ -32,8 +31,7 @@ ranges.routes.add(new Route(
 	{
 		id: 'ranges-between-dates',
 		path: '/dates',
-		method: 'GET',
-		useAuth: true
+		method: 'GET'
 	},
 	rangesController.getBetweenDates
 ));

@@ -7,7 +7,7 @@ const dataSquema = new Schema(
 		timestamp: { type: String, default: Date.now() },
 		ecu: {
 			water_temp_eng: { type: Number, default: null },
-			oil_tempEng: { type: Number, default: null },
+			oil_temp_eng: { type: Number, default: null },
 			rpm: { type: Number, default: null },
 		},
 		wfl: {
@@ -49,12 +49,16 @@ const dataSquema = new Schema(
 const model = mongoose.model('Data', dataSquema);
 
 model.findByRange = function(from, to, callback) {
-	model
+	const modelInst = model
 		.find()
 		.where('timestamp')
 			.gte(moment(from).unix())
-			.lte(moment(to).unix())
-		.exec(callback);
+			
+	if (to) {
+		modelInst.lte(moment(to).unix())
+	}
+	
+	modelInst.exec(callback);
 };
 
 module.exports = model;

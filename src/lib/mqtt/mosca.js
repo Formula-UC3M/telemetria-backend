@@ -30,7 +30,8 @@ moscaMQTTServer.on('published', (packet, client) => {
 	}
 
 	// Solo hacemos algo cuando se envia un mensaje al topic que a nosotros nos interesa.
-	if (!packet.topic.toLowerCase().startsWith('$sys')) {
+	const lowerCSTopicName = packet.topic.toLowerCase();
+	if (!lowerCSTopicName.startsWith('$sys') && !lowerCSTopicName.startsWith('formula-fake-data')) {
 		const first = packet.topic.indexOf('/');
 		const route = packet.topic.substring(first + 1);
 

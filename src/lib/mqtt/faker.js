@@ -231,6 +231,6 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 		});
 
 		// Publicar cambios en clutch cada entre 2 y 8 segundos.
-		publishBooleanInterval(5000, 'clutch', 1);
+		// publishBooleanInterval(5000, 'clutch', 1);
 	});
 };

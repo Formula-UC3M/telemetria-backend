@@ -5,7 +5,7 @@ function createToken (user) {
 	return jwt.encode({
 		sub: user._id,
 		iat: moment().unix(),
-		exp: moment().add(process.env.JWT_TOKEN_EXP_DAYS, 'days').unix()
+		exp: moment().add(process.env.JWT_TOKEN_EXP_DAYS || 1, 'days').unix()
 	}, process.env.JWT_SECRET_TOKEN);
 }
 
