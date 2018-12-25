@@ -1,7 +1,7 @@
 /* global Route */
 const dataModel = require('../models/data');
-const store = require('../lib/store');
-const storeObj = new store().init();
+const dataToCsv = require('../lib/dataToCsv');
+const moment = require('moment');
 
 const dataRoute = new Route(
 	{
@@ -11,21 +11,34 @@ const dataRoute = new Route(
 		useAuth: true
 	},
 	gw => {
-		if (!gw.params.from || !gw.params.to) {
-			gw.json({
-				description: 'Guardado y carga de datos manual, sin usar mqtt.',
+		if (!gw.params.all && !gw.params.from) {
+			return gw.json({
+				description: 'Rutas de obtención de datos.',
 				rutas: {
-					'/data/*:path': {
-						GET: 'Devuelve el dato pedido si la "ruta" existe. Pj. /data/ecu/rpm',
-						POST: 'Actualiza o guarda datos en la "ruta" si esta existe. Pj. /data/ecu/rpm/12000. La última parte es el valor.'
+					'/data?all=1': {
+						GET: 'Devuelve todos los datos guardados en json.',
+					},
+					'/data?from=:timestamp': {
+						GET: 'Devuelve todos los datos guardados desde "from" en formato json.',
 					},
 					'/data?from=:timestamp&to=:timestamp': {
-						GET: 'Devuelve todos los datos guardados entre "from" y "to". Pj. /data/ecu/rpm',
+						GET: 'Devuelve todos los datos guardados entre "from" y "to" en formato json.',
+					},
+					'/data/csv': {
+						'GET, POST': 'Descarga un csv con todos los datos guardados en csv.',
+					},
+					'/data/csv?from=:timestamp': {
+						'GET, POST': 'Descarga un csv con todos los datos guardados desde "from".',
+					},
+					'/data/csv?from=:timestamp&to=:timestamp': {
+						'GET, POST': 'Descarga un csv con todos los datos guardados entre "from" y "to".',
 					}
 				}
 			}, { deep: 0 });
-		} else {
-			dataModel.findByRange(gw.params.from, gw.params.to, (err, data) => {
+		}
+
+		if (gw.params.all) {
+			return dataModel.find().exec((err, data) => {
 				if (err) {
 					gw.errorAsJson(500, err);
 				}
@@ -33,29 +46,46 @@ const dataRoute = new Route(
 				gw.json(data, {deep: 0});
 			});
 		}
+
+		dataModel.findByRange(gw.params.from, gw.params.to, (err, data) => {
+			if (err) {
+				gw.errorAsJson(500, err);
+			}
+
+			gw.json(data, {deep: 0});
+		});
 	}
 );
 
 dataRoute.routes.add(new Route(
 	{
-		id: 'save-data',
-		path: '/*:path',
-		method: 'POST',
+		id: 'csv-data',
+		path: '/csv',
+		method: ['GET', 'POST'],
 		useAuth: true
 	},
 	gw => {
-		const last = gw.pathParams.path.lastIndexOf('/');
-		const first = gw.pathParams.path.indexOf('/');
-		const route = gw.pathParams.path.substring(first + 1, last);
-		const value = gw.pathParams.path.substring(last + 1);
+		const now = moment(new Date()).format('D-M-YYYY hh:mm:ss');
+		gw.setHeader('Content-disposition', `attachment; filename=formula-data-${ now }.csv`);
+		gw.setHeader('Content-Type', 'text/csv');
 
-		try {
-			storeObj.save(route, value);
-			gw.json({ route, value });
-		} catch(e) {
-			console.error('Error:' +  e.message);
-			gw.errorAsJson(400, e.message);
+		if (!gw.params.from) {
+			return dataModel.find().exec((err, data) => {
+				if (err) {
+					gw.errorAsJson(500, err);
+				}
+
+				gw.send(dataToCsv(data), 'text/csv');
+			});
 		}
+
+		dataModel.findByRange(gw.params.from, gw.params.to, (err, data) => {
+			if (err) {
+				gw.errorAsJson(500, err);
+			}
+
+			gw.send(dataToCsv(data), 'text/csv');
+		});
 	}
 ));
 

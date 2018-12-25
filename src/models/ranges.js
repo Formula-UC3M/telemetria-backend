@@ -40,6 +40,10 @@ const RangesSchema = new Schema(
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
 		},
+		brakePosition: {
+			min: { type: Number, default: 0 },
+			max: { type: Number, default: null },
+		},
 		speed: {
 			min: { type: Number, default: 0 },
 			max: { type: Number, default: null },
@@ -80,6 +84,10 @@ const defaultRanges = {
 		max: 100
 	},
 	throttlePosition: {
+		min:  0,
+		max: 100
+	},
+	brakePosition: {
 		min:  0,
 		max: 100
 	},

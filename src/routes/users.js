@@ -5,7 +5,8 @@ const users = new Route(
 	{
 		id: 'users',
 		path:'/users',
-		method: 'GET'
+		method: 'GET',
+		useAuth: false
 	},
 	gw => {
 		// Mostrar info

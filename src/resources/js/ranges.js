@@ -1,11 +1,5 @@
 /* global jQuery, moment */
 (($, moment, responseManager) => {
-	const authToken = localStorage.getItem('token');
-	
-	if (!authToken) {
-		return window.location.href = '/login';
-	}
-
 	const ecuFields = [
 		{ label: 'Temperatura Agua', slug: 'waterTempEng' },
 		{ label: 'Temperatura Aceite', slug: 'oilTempEng' },
@@ -137,9 +131,6 @@
 
 				fetch('/api/ranges', {
 					method: 'POST',
-					headers: new Headers({
-						'Authorization': 'Bearer ' + authToken
-					}),
 					body: bodyData
 				})
 				.then(responseManager)
@@ -176,19 +167,14 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', event => {	
-		fetch('/api/ranges', {
-			method: 'GET',
-			headers: new Headers({
-				'Authorization': 'Bearer ' + authToken
-			}) 
-		})
-		.then(responseManager)
-		.then(data => {
-			new TableForm(data);
-		})
-		.catch(error => {
-			display('Error', error);
-		});
+		fetch('/api/ranges', { method: 'GET' })
+			.then(responseManager)
+			.then(data => {
+				new TableForm(data);
+			})
+			.catch(error => {
+				display('Error', error);
+			});
 		
 	});
 })(jQuery, moment, window.responseManager);
