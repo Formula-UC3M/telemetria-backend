@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const service = require('../services');
+const moment = require('moment');
 
 function signUp (gw) {
 	const payload = Object.assign({}, gw.content.params);
@@ -54,14 +55,36 @@ function login (gw) {
 			return gw.errorAsJson(500,  `La contraseña no es válida!`);
 		}
 
+		const token = service.createToken(user);
+		gw.setCookie('authorization', token, {
+			domain: process.env.HOST,
+			path: '/',
+			expires: moment().add(process.env.JWT_TOKEN_EXP_DAYS || 1, 'days').unix(),
+			httpOnly: false,
+			secure: false
+		});
+
 		gw.json({
 			message: 'Te has logueado correctamente',
-			token: service.createToken(user)
+			token
 		});
 	});
 }
 
+function logout(gw) {
+	gw.setCookie('authorization', '', {
+		domain: process.env.HOST,
+		path: '/',
+		expires: 0,
+		httpOnly: false,
+		secure: false
+	});
+
+	gw.redirect('/login');
+}
+
 module.exports = {
 	signUp,
-	login
+	login,
+	logout
 };

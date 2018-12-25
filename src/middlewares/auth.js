@@ -7,10 +7,12 @@ module.exports = function(gw, next) {
 		return next();
 	}
 
+	// Se acepta tanto mandar el token de autenticación cómo usar la cookie.
 	const auth = gw.req.headers.authorization;
-	const token = auth ? auth.split(' ')[1] : false;
-	
-	if (!auth || !token) {
+	const cookieToken = gw.cookie.authorization;
+	const token = cookieToken ? cookieToken : (auth ? auth.split(' ')[1] : false);
+
+	if (!token) {
 		return gw.redirect('/login');
 	}
 
