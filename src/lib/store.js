@@ -7,15 +7,10 @@ const DataModel = require('../models/data');
 module.exports = function store() {
 	// Private attributes.
 	let initialized = false;
-	let data = null;
+	let data = new DataModel();
 	let updated = false;
 
-	// Private methods
-	function restart() {
-		data = new DataModel();
-		updated = false;
-	}
-	
+	// Private methods	
 	function doSave() {
 		if (updated) {
 			data.timestamp = Date.now();
@@ -25,7 +20,7 @@ module.exports = function store() {
 				}
 			});
 
-			restart();
+			updated = false;
 		}
 	}
 
@@ -37,7 +32,6 @@ module.exports = function store() {
 		}
 
 		initialized = true;
-		restart();
 		setInterval(doSave, parseInt(process.env.RESOLUTION));
 		return this;
 	};
@@ -55,6 +49,8 @@ module.exports = function store() {
 
 		updated = true;
 		const tree = route.split('/');
+
+		// Variable pivotal que va apuntando a diferentes partes del objeto data y actualizando los datos.
 		let parent = data;
 		
 		for (let i = 0; i < tree.length; i++) {
