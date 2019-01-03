@@ -52,8 +52,8 @@ model.findByRange = function(from, to, callback) {
 	const modelInst = model
 		.find()
 		.where('timestamp')
-			.gte(moment(from).unix())
-			
+			.gte(moment(from).unix());
+
 	if (to) {
 		modelInst.lte(moment(to).unix())
 	}

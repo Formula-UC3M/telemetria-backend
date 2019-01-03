@@ -52,6 +52,7 @@ const RangesSchema = new Schema(
 );
 
 const defaultRanges = {
+	_id: 0,
 	version: 0,
 	ecu: {
 		waterTempEng: {
