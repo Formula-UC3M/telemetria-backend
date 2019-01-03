@@ -5,7 +5,7 @@ function errorHandler(gw, error) {
 }
 
 function parseDocument(data) {
-	data = data._doc;
+	data = data._doc || data;
 	data._id = String(data._id);
 	return data;
 }
