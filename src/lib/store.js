@@ -21,6 +21,10 @@ module.exports = function store() {
 			});
 
 			updated = false;
+
+			// Create new model instance.
+			data._id = undefined;
+			data = new DataModel(data);
 		}
 	}
 
