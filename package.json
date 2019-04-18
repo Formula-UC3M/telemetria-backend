@@ -83,5 +83,8 @@
     "path": "0.12.7",
     "sinon": "1.17.7"
   },
-  "snyk": true
+  "snyk": true,
+  "engines": {
+    "node": "10.15.3"
+  }
 }
