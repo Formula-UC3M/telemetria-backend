@@ -6,6 +6,7 @@ const users = new Route(
 		id: 'users',
 		path:'/users',
 		method: 'GET',
+		cors: true,
 		useAuth: false
 	},
 	gw => {
@@ -48,7 +49,8 @@ users.routes.add(new Route(
 	{
 		id: 'login',
 		path: '/login',
-		method: 'POST',
+		method: ['POST', 'OPTIONS'],
+		cors: true,
 		multipart: true
 	},
 	usersController.login
