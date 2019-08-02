@@ -131,7 +131,7 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 		moscaMQTTServer.publish({
 			topic: 'formula-fake-data/' + route,
 			payload: value.toString(),
-			qos: 1
+			qos: 2
 		}, null, callback);
 	}
 
