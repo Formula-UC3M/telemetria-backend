@@ -128,7 +128,6 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 	 * @return {void} Nada.
 	 */
 	function publish(route, value, callback) {
-		console.log(route, value);
 		try {
 			moscaMQTTServer.publish({
 				topic: 'formula-fake-data/' + route,
