@@ -159,7 +159,7 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 		if (current > max) {
 			return publishInterval(every, route, min, max, addition, min);
 		}
-;
+		route === 'ecu/rpm' && console.log(route, current);
 		publish(route, current, () => {
 			setTimeout(() => publishInterval(
 				every,
