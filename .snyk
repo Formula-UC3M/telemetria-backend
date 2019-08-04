@@ -11,6 +11,7 @@ patch:
   'npm:uglify-js:20151024':
     - jade > transformers > uglify-js:
         patched: '2018-11-28T13:10:47.877Z'
+
   SNYK-JS-LODASH-450202:
     - snyk > @snyk/dep-graph > graphlib > lodash:
         patched: '2019-07-04T07:57:21.135Z'
