@@ -8,7 +8,7 @@
 
 	const fields = [
 		// { label: 'Acelerometro', slug: 'accelerometer' },
-		// { label: 'Posición Freno', slug: 'brakePosition' },
+		{ label: 'Posición Freno', slug: 'brakePosition' },
 		{ label: 'Temperatura Freno', slug: 'brakeTemperature' },
 		// { label: 'Dirección', slug: 'direction' },
 		{ label: 'Suspensión', slug: 'suspension' },
