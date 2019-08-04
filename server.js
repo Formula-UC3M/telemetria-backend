@@ -15,12 +15,14 @@ console.info('Añadiendo middlewares.');
 require('./src/middlewares');
 
 // Configurando servidor web (pillars).
+// PORT - (Heroku Dinamic Port)
+const port = parseInt(process.env.PORT ? process.env.PORT : process.env.WEB_PORT);
 const http = project.services.get('http');
 project.config.favicon = './src/resources/img/favico.ico';
 project.config.debug = process.env.DEBUG_MODE;
 http.configure({
 	host: process.env.HOST,
-	port: parseInt(process.env.WEB_PORT)
+	port
 });
 
 // Enganchar un servicio http con pillars al servidor mqtt de mosca.
@@ -39,7 +41,7 @@ moscaMQTTServer.on('ready', () => {
 		console.info('Conectado a base de datos.');
 		console.info('Arrancando servidor web...');
 		http.start();
-		console.info(`Servidor corriendo en: http://${ process.env.HOST }:${ process.env.WEB_PORT }`);
+		console.info(`Servidor corriendo en: http://${ process.env.HOST }:${ port }`);
 
 		// Configurar motor de plantillas
 		global.templated.addEngine('jade', function compiler(source, path) {

@@ -128,11 +128,15 @@ module.exports =  function(moscaMQTTServer, incrementPercentage, baseIntervalTim
 	 * @return {void} Nada.
 	 */
 	function publish(route, value, callback) {
-		moscaMQTTServer.publish({
-			topic: 'formula-fake-data/' + route,
-			payload: value.toString(),
-			qos: 1
-		}, null, callback);
+		try {
+			moscaMQTTServer.publish({
+				topic: 'fake/' + route,
+				payload: value.toString(),
+				qos: 2
+			}, null, callback);
+		} catch (e) {
+			console.error('Error publishing in route ' + route, e);
+		}
 	}
 
 	/**

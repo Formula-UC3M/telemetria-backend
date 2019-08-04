@@ -5,9 +5,10 @@ const ranges = new Route(
 	{
 		id: 'api-ranges',
 		path:'/api/ranges',
-		method: ['GET', 'POST'],
+		method: ['GET', 'POST', 'OPTIONS'],
 		multipart: true,
-		useAuth: true
+		useAuth: true,
+		cors: true
 	},
 	gw => {
 		if (gw.method === 'GET') {

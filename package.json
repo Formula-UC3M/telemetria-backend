@@ -1,6 +1,6 @@
 {
   "name": "formula-uc3m-server",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Servidor para el proyecto formula-uc3m con guardado y explotación de datos en tiempo real.",
   "main": "server.js",
   "scripts": {
@@ -79,10 +79,13 @@
     "gulp-jsdoc3": "^2.0.0",
     "gulp-mocha": "^6.0.0",
     "gulp-util": "3.0.8",
-    "mocha": "^6.1.3",
+    "mocha": "^6.2.0",
     "mocha-sinon": "1.1.6",
     "path": "0.12.7",
     "sinon": "1.17.7"
   },
-  "snyk": true
+  "snyk": true,
+  "engines": {
+    "node": "10.15.3"
+  }
 }
