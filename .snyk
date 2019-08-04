@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.1
+version: v1.13.5
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -11,3 +11,46 @@ patch:
   'npm:uglify-js:20151024':
     - jade > transformers > uglify-js:
         patched: '2018-11-28T13:10:47.877Z'
+  SNYK-JS-LODASH-450202:
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - mosca > amqp > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-config > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > inquirer > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - pillars > textualization > jshint > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - mongoose > async > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - mosca > ascoltatori > ioredis > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - mosca > ascoltatori > amqp > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - pillars > templated > textualization > jshint > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - pillars > scheduled > textualization > jshint > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - pillars > templated > pug > pug-code-gen > constantinople > babel-types > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - pillars > templated > pug > pug-filters > constantinople > babel-types > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
+    - pillars > templated > pug > pug-code-gen > pug-attrs > constantinople > babel-types > lodash:
+        patched: '2019-07-04T07:57:21.135Z'
