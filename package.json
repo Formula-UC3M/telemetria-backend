@@ -57,7 +57,7 @@
   },
   "homepage": "https://github.com/Formula-UC3M/telemetria-backend/tree/master/#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "dotenv": "5.0.1",
     "formula-uc3m-client": "git+https://github.com/Formula-UC3M/telemetria-frontend.git#dev",
     "jade": "^1.11.0",
